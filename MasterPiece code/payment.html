@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>إتمام الدفع</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400&display=swap" rel="stylesheet">
+
+
+  <!-- =======================================================
+  * Template Name: Gp
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+    body {
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    h4 {
+      text-align: right;
+    }
+
+    .cardStyle {
+      background: linear-gradient(135deg, #f1c40f, #f39c12);
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 30px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .cardStyle:hover {
+      transform: scale(1.05);
+      /* تأثير التحويم */
+    }
+
+    .cardFont {
+      color: #333;
+      text-align: center;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cancelBtn {
+      color: #a28141;
+      padding: 10px 20px;
+      border: 1px var(--accent-color) solid;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    input::placeholder {
+      color: #666;
+      text-align: right;
+    }
+
+    .cardStyle.cardBack {
+      background: linear-gradient(135deg, #f1c40f, #f39c12);
+    }
+
+    .dateCard {
+      text-align: center;
+    }
+
+    .numberFont {
+      font-family: Courier New;
+    }
+
+    .py-5 {
+      height: 440px;
+    }
+
+    .paymentPage .section {
+      padding-bottom: 0;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-color);
+      border: none;
+      color: black;
+    }
+    #FinalpayBut{
+      color: black;
+    }
+    .btn-getstarted:hover{
+    #FinalpayBut{
+      color: white;
+    }  
+    } 
+  </style>
+</head>
+
+<body class="index-page pay">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+        <a class="leftNav" href="Home.html">تسجيل خروج</a>
+        <a class="leftNav" href="profile.html">الصفحة الشخصية</a>
+        <a class="leftNav" href="SignIN.html">تسجيل دخول</a>
+        <a class="leftNav" href="Register.html">تسجيل</a>
+        <a class="leftNav" href="Checkout.html"><i class="bi bi-cart"></i></a>
+
+        <div class="input-group" style="width: 300px;">
+            <div class="form-outline" style="flex-grow: 1;">
+                <input type="search" id="form1" class="form-control" placeholder="بحث"
+                    style="padding-right: 2.25rem;" />
+            </div>
+            <button class="btn btn-outline-secondary" type="button" id="search-button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="Home.html#contact">تواصل معنا</a></li>
+                <li><a href="specialOffers.html">عروض خاصة</a></li>
+                <li class="dropdown"><a href="#"><span>الخدمات</span> <i
+                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="venues.html">حجز الصالات</a></li>
+                        <li><a href="farms.html">حجز المزارع</a></li>
+                        <li><a href="clothes.html">الملابس</a></li>
+                        <li><a href="food.html">الطعام والشراب</a></li>
+                        <li><a href="photographers.html">التصوير</a></li>
+                        <li><a href="invitationCards.html">كروت الدعوة</a></li>
+                    </ul>
+                </li>
+                <li><a href="Home.html#About">عن فرح</a></li>
+                <li><a href="Home.html">الرئيسية<br></a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <div>
+            <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+                <img src="assets/img/goldlogo.png" alt="logo">
+            </a>
+        </div>
+
+    </div>
+</header>
+
+  <main class="main paymentPage">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+      <div class="w-100 bg-light paymentDiv">
+        <div class="d-flex h-100 align-items-center">
+          <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 mx-auto">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="position-relative">
+                  <div class="cardStyle">
+                    <div class="text-end"><strong>DB BANK</strong></div>
+                    <div class="mt-3 d-flex align-items-center justify-content-between">
+                      <div><img src="assets/img/gold.png" alt="Chip" height="32"></div>
+                      <div><img style="transform:rotate(90deg)" src="assets/img/blackWifi.png" alt="Chip" height="24">
+                      </div>
+                    </div>
+                    <div class="fs-4 mt-2 cardFont numberFont text-shadow-white" id="visualNumber">1234 5678 1234 5678
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col"></div>
+                      <div class="dateCard text-shadow-white"><span id="visualMonth">12</span>/<span
+                          id="visualYear">24</span></div>
+                    </div>
+                    <div class="fs-5 cardFont text-shadow-white">
+                      <p id="visualName">P John Doe</p>
+                    </div>
+                  </div>
+                  <div class="cardStyle cardBack pt-3">
+                    <div class="mt-4 p-4 bg-black"></div>
+                    <div class="mb-3 bg-white">
+                      <div class="d-flex justify-content-between">
+                        <div class="p-3 bg-white"></div>
+                        <div class="p-3 bg-light"><em id="visualCVV">123</em></div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="px-4 py-5 bg-white customRounded payform shadow">
+                  <h4>تفاصيل الدفع</h4>
+                  <form action="">
+                    <div class="mt-4 mb-3"><input onkeyup="updateCard(this,'visualNumber')" onblur="protect(this,4)"
+                        type="text" name="cardNumber" id="cardNumber" placeholder="رقم البطاقة" class="form-control">
+                    </div>
+                    <div class="mb-3"><input type="text" onkeyup="updateCard(this,'visualName')" name="cardholderName"
+                        id="cardholderName" placeholder="اسم صاحب البطاقة" class="form-control"></div>
+                    <div class="row">
+                      <div class="col"><input type="text" onkeyup="updateCard(this,'visualMonth')" placeholder="12"
+                          name="month" class="form-control"></div>
+                      <div class="col"><input type="text" onkeyup="updateCard(this,'visualYear')" placeholder="2028"
+                          name="year" class="form-control"></div>
+                      <div class="col"><input type="text" onkeyup="updateCard(this,'visualCVV')" placeholder="CVV"
+                          name="year" class="form-control"></div>
+                    </div>
+                    <div class="mt-3 d-flex">
+                      <a href="Home.html" class="btn btn-outline-primary w-25 ms-2 cancelBtn">الغاء</a>
+                      <button class="btn-getstarted w-75 me-2"><a id="FinalpayBut" href="confirmPayment.html">دفع 700 دينار أردني</a></button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <div class="footer-contact pt-3">
+                        <h4>تابعنا</h4>
+                        <p>إربد، شارع أبو راشد مجمع الرشدان الطابق الثالث</p>
+                        <p class="mt-3"><strong>الهاتف:</strong> <span>0787580676</span></p>
+                        <p><span>FarahOffice96@gmail.com:</span><strong>البريد الإلكتروني</strong></p><br>
+                    </div>
+                    <div class="social-links d-flex mt-4">
+                        <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
+                        <a href="https://www.instagram.com/?hl=en"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+                        <a href="https://x.com/?lang-en="><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li> <a href="venues.html">الصالات</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="farms.html">المزارع</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="clothes.html">الملابس</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="food.html">الطعام والشراب</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="photographers.html">التصوير</a><i class="bi bi-chevron-left"></i></li>
+                    </ul>
+                </div>
+                
+
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li> <a href="Home.html">الرئيسية</a> <i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="Home.html#About">عن فرح</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="Home.html#services">الخدمات</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="specialOffers.html">عروض خاصة</a><i class="bi bi-chevron-left"></i></li>
+                        <li> <a href="Home.html#contact">تواصل معنا</a><i class="bi bi-chevron-left"></i></li>
+                    </ul>
+                </div>
+                
+
+                <div class="col-lg-4 col-md-12 footer-newsletter">
+                    <h4><a href="assets/img/logo_white.png" class="logo align-items-center">
+                        <span class="sitename"><img src="assets/img/logo_white.png" alt="شعار الموقع"></span>
+                    </a></h4>
+                    <p>نساعدك في جعل يومك الأجمل مميزًا ومثاليًا بخدماتنا المتكاملة لحفلات الزفاف في إربد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    function updateCard(t, id) {
+      var elem = document.getElementById(id)
+      var num = t.value
+      if (id === 'visualNumber') {
+        if (num.length > 16) return t.value = num.substr(0, 16)
+        num = num.toString().match(/.{4}/g) ? num.toString().match(/.{4}/g).join(' ') : num;
+      }
+      elem.innerText = num
+    }
+
+    function protect(t, end) {
+      var num = t.value
+      t.value = num.substr(num.length - 4, num.length)
+    }
+    document.querySelector('.btn-primary').addEventListener('mouseenter', function () {
+      this.style.transform = 'scale(1.05)';
+    });
+
+    document.querySelector('.btn-primary').addEventListener('mouseleave', function () {
+      this.style.transform = 'scale(1)';
+    });
+
+    document.querySelectorAll('.form-control').forEach(function (input) {
+      input.addEventListener('focus', function () {
+        this.style.boxShadow = '0 0 5px rgba(0, 123, 255, 0.5)';
+      });
+      input.addEventListener('blur', function () {
+        this.style.boxShadow = 'none';
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

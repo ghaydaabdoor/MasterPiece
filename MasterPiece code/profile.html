@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Profile</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profileContainer {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            direction: rtl; /* Right-to-left for Arabic */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .profile-header img {
+            margin-left: 20px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 4px solid #6c757d;
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: #7D702F;
+            font-size: 25px;
+        }
+
+        .profile-info p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .profile-info span {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6f42c1; /* Underline for section title */
+            padding-bottom: 10px;
+        }
+
+        .user-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-row {
+            margin-bottom: 10px;
+        }
+
+        .info-row label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .service-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .service-list li {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .service-list li:hover {
+            transform: translateY(-2px);
+        }
+
+        .edit-profile-btn {
+            display: block;
+            background-color: var(--accent-color);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .edit-profile-btn:hover {
+            color: var(--default-color);
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .regServ {
+            font-size: 25px;
+        }
+
+        /* Loading animation */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="index-page">
+    <div id="loading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    
+            <a class="leftNav" href="Home.html">تسجيل خروج</a>
+            <a class="leftNav" href="profile.html">الصفحة الشخصية</a>
+            <a class="leftNav" href="SignIN.html">تسجيل دخول</a>
+            <a class="leftNav" href="Register.html">تسجيل</a>
+            <a class="leftNav" href="Checkout.html"><i class="bi bi-cart"></i></a>
+    
+            <div class="input-group" style="width: 300px;">
+                <div class="form-outline" style="flex-grow: 1;">
+                    <input type="search" id="form1" class="form-control" placeholder="بحث"
+                        style="padding-right: 2.25rem;" />
+                </div>
+                <button class="btn btn-outline-secondary" type="button" id="search-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="Home.html#contact">تواصل معنا</a></li>
+                    <li><a href="specialOffers.html">عروض خاصة</a></li>
+                    <li class="dropdown"><a href="#"><span>الخدمات</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="venues.html">حجز الصالات</a></li>
+                            <li><a href="farms.html">حجز المزارع</a></li>
+                            <li><a href="clothes.html">الملابس</a></li>
+                            <li><a href="food.html">الطعام والشراب</a></li>
+                            <li><a href="photographers.html">التصوير</a></li>
+                            <li><a href="invitationCards.html">كروت الدعوة</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Home.html#About">عن فرح</a></li>
+                    <li><a href="Home.html">الرئيسية<br></a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+    
+            <div>
+                <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+                    <img src="assets/img/goldlogo.png" alt="logo">
+                </a>
+            </div>
+    
+        </div>
+    </header>
+
+    <main class="main profilePage">
+        <section id="EachService" class="EachService section">
+            <div class="profileContainer">
+                <h3 class="Eachsection-title">معلومات المستخدم</h3>
+                <hr>
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <h2>سارة خليل</h2>
+                        <p>sara_99@gmail.com</p>
+                        <span>رقم الهاتف: 0123456789</span>
+                        <span>العنوان: شارع 123، المدينة</span>
+                    </div>
+                    <img class="profile-img" src="assets/img/testimonials/testimonials-2.jpg" alt="Profile Picture">
+                </div>
+
+                <div class="user-info">
+                    <div class="info-row">
+                        <label>الاسم الأول:</label>
+                        <span>سارة</span>
+                    </div>
+                    <div class="info-row">
+                        <label>الاسم الثاني:</label>
+                        <span>خليل</span>
+                    </div>
+                    <div class="info-row">
+                        <label>البريد الإلكتروني:</label>
+                        <span>sara_99@gmail.com</span>
+                    </div>
+                    <div class="info-row">
+                        <label>رقم الهاتف:</label>
+                        <span>0123456789</span>
+                    </div>
+                    <div class="info-row">
+                        <label>العنوان:</label>
+                        <span>شارع 123، المدينة</span>
+                    </div>
+                </div>
+
+                <h3 class="Eachsection-title regServ">الخدمات المسجلة</h3>
+                <hr>
+                <ul class="service-list">
+                    <li>حجز الصالات</li>
+                    <li>حجز المزارع</li>
+                    <li>الملابس</li>
+                    <li>الطعام والشراب</li>
+                    <li>التصوير</li>
+                    <li>كروت الدعوة</li>
+                </ul>
+
+                <a href="edit-profile.html" class="edit-profile-btn">تعديل الملف الشخصي</a>
+            </div>
+        </section>
+    </main>
+    <footer id="footer" class="footer dark-background">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <div class="footer-contact pt-3">
+                            <h4>تابعنا</h4>
+                            <p>إربد، شارع أبو راشد مجمع الرشدان الطابق الثالث</p>
+                            <p class="mt-3"><strong>الهاتف:</strong> <span>0787580676</span></p>
+                            <p><span>FarahOffice96@gmail.com:</span><strong>البريد الإلكتروني</strong></p><br>
+                        </div>
+                        <div class="social-links d-flex mt-4">
+                            <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
+                            <a href="https://www.instagram.com/?hl=en"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+                            <a href="https://x.com/?lang-en="><i class="bi bi-twitter"></i></a>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>خدماتنا</h4>
+                        <ul>
+                            <li> <a href="venues.html">الصالات</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="farms.html">المزارع</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="clothes.html">الملابس</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="food.html">الطعام والشراب</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="photographers.html">التصوير</a><i class="bi bi-chevron-left"></i></li>
+                        </ul>
+                    </div>
+                    
+  
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>روابط مفيدة</h4>
+                        <ul>
+                            <li> <a href="Home.html">الرئيسية</a> <i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#About">عن فرح</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#services">الخدمات</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="specialOffers.html">عروض خاصة</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#contact">تواصل معنا</a><i class="bi bi-chevron-left"></i></li>
+                        </ul>
+                    </div>
+                    
+    
+                    <div class="col-lg-4 col-md-12 footer-newsletter">
+                        <h4><a href="assets/img/logo_white.png" class="logo align-items-center">
+                            <span class="sitename"><img src="assets/img/logo_white.png" alt="شعار الموقع"></span>
+                        </a></h4>
+                        <p>نساعدك في جعل يومك الأجمل مميزًا ومثاليًا بخدماتنا المتكاملة لحفلات الزفاف في إربد</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </footer>
+    
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loadingScreen = document.getElementById('loading');
+            loadingScreen.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
