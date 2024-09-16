@@ -1,0 +1,105 @@
+﻿@model MasterPiece.Models.ClothDetail
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ClothDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClothMaterial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClothMaterial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Features)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Features)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cloth.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cloth.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

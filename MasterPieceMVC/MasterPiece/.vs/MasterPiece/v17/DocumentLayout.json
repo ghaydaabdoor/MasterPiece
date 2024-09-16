@@ -1,0 +1,172 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\views\\admin\\createvenue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\admin\\createvenue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\views\\admin\\showvenues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\admin\\showvenues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\content\\dashboard\\css\\rtl.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\content\\dashboard\\css\\rtl.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\content\\dashboard\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\content\\dashboard\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\models\\weddingvenuedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\models\\weddingvenuedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\models\\weddingvenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\models\\weddingvenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\models\\weddingvenueviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\models\\weddingvenueviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Content\\Dashboard\\css\\style.css",
+              "RelativeDocumentMoniker": "MasterPiece\\Content\\Dashboard\\css\\style.css",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Content\\Dashboard\\css\\style.css",
+              "RelativeToolTip": "MasterPiece\\Content\\Dashboard\\css\\style.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T12:03:09.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "rtl.css",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Content\\Dashboard\\css\\rtl.css",
+              "RelativeDocumentMoniker": "MasterPiece\\Content\\Dashboard\\css\\rtl.css",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Content\\Dashboard\\css\\rtl.css",
+              "RelativeToolTip": "MasterPiece\\Content\\Dashboard\\css\\rtl.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T12:08:48.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AQIAAKkAAAAAAAAAAAAiwLkAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-16T06:43:59.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeddingVenueViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenueViewModel.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Models\\WeddingVenueViewModel.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenueViewModel.cs",
+              "RelativeToolTip": "MasterPiece\\Models\\WeddingVenueViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T16:30:52.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CreateVenue.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Admin\\CreateVenue.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\Admin\\CreateVenue.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Admin\\CreateVenue.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\Admin\\CreateVenue.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-15T11:56:13.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WeddingVenueDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenueDetail.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Models\\WeddingVenueDetail.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenueDetail.cs",
+              "RelativeToolTip": "MasterPiece\\Models\\WeddingVenueDetail.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAA1wBYAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T17:37:33.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ShowVenues.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Admin\\ShowVenues.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\Admin\\ShowVenues.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Admin\\ShowVenues.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\Admin\\ShowVenues.cshtml",
+              "ViewState": "AQIAAMoAAAAAAAAAAAAmwNsAAACKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-14T09:45:26.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "MasterPiece\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAYwBQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T09:08:05.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WeddingVenue.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenue.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Models\\WeddingVenue.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\WeddingVenue.cs",
+              "RelativeToolTip": "MasterPiece\\Models\\WeddingVenue.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAAB8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T13:42:26.352Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MasterPiece.Models.Cloth>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section clothesSection">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">خدمات الملابس<br></p>
+            <p class="Eachsection-description">
+                اكتشف مجموعتنا الرائعة من خدمات تأجير الملابس للعروس والعريس، حيث
+                نوفر لكم تجربة مميزة لاختيار إطلالتكم الأنيقة ليومكم الخاص. تضمن خدماتنا تلبية احتياجاتكم بأسلوب
+                راقي واحترافي، مما يجعل لحظاتكم لا تُنسى
+            </p>
+            <div class="Eachsection-description">
+                <p>خدماتنا تشمل</p>
+                <p>فساتين الزفاف: مجموعة متنوعة من الفساتين بأحدث التصاميم والأنماط</p>
+                <p>البدلات الرجالية: تشكيلة من البدلات الأنيقة والموديلات الحديثة لإطلالة العريس المثالية</p>
+            </div>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                @foreach (var item in Model)
+                {
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/Content/img/@item.ImageUrl" alt="" class="img-fluid">
+                        </div>
+                        <h3>@item.Name</h3>
+                        <p>اللون:@item.Color</p>
+                        <p>@item.Description</p>
+                        <div class="stars">
+                            <a class="btn-getstarted details-btn" href="@Url.Action("Index", "ClothDetails", new {id=item.ClothId})">التفاصيل</a>
+                            <span>@item.Rate</span>
+                            <div>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End Card Item -->
+
+                }
+            </div>
+
+        </div>
+
+    </section><!-- /EachService Section -->
+
+</main>
