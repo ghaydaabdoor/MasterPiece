@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MasterPiece.Models.Farm>
+
+@{
+    ViewBag.Title = "المزارع";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">مزارع خاصة للحفلات والمناسبات الخاصة في اربد<br></p>
+            <p class="Eachsection-description">استمتع بجولة مميزة في أفضل المزارع في إربد، حيث تجد مجموعة متنوعة من الأماكن الطبيعية الرائعة لإقامة أحداثك الخاصة. إليك قائمة ببعض المزارع المميزة في المنطقة</p>
+        </div>>
+        <!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="~/Content/img/@item.ImageUrl" alt="" class="img-fluid">
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p>@item.Location</p>
+                            <p>السعر: @item.Price دينار</p>
+                            <div class="stars">
+                                <a class="btn-getstarted details-btn" href="@Url.Action("Index","FarmDetails",new {id=item.FarmId})">التفاصيل</a>
+                                <span>@item.Rate (20)</span>
+                                <div><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card Item -->
+                }
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <!-- /EachService Section -->
+
+</main>
