@@ -1,0 +1,67 @@
+﻿@model MasterPiece.Models.FoodDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FoodDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Food.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Food.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FoodDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

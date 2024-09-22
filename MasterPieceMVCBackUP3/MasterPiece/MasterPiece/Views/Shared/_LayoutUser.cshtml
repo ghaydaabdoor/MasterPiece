@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>@ViewBag.Title</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Content/img/favicon.png" rel="icon">
+    <link href="~/Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- not included add them-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure that the text inside the dropdown is right-aligned */
+        .dropdown ul {
+            text-align: right; /* Right-align text in the dropdown */
+            direction: rtl; /* Set the text direction to right-to-left */
+        }
+
+            .dropdown ul li a {
+                text-align: right; /* Right-align links inside the dropdown */
+                padding-right: 20px; /* Add padding to create spacing on the right side */
+            }
+        /* General Navbar Styling */
+.header {
+    background-color: #f8f9fa; /* Light background */
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: #7D702F; /* Change color when scrolling */
+    padding: 5px 0;
+}
+
+/* Logo Styling */
+.logo img {
+    max-height: 50px;
+}
+
+/* Navmenu Styling */
+.navmenu {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navmenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Increased gap between links */
+}
+
+.navmenu a {
+    color: #7D702F;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.navmenu a:hover,
+.navmenu .active {
+    color: #d1b75b; /* Gold color on hover */
+    border-bottom: 2px solid #d1b75b; /* Add bottom border on hover */
+}
+
+/* Dropdown Menu */
+.navmenu .dropdown ul {
+    position: absolute;
+    background-color: #fff;
+    padding: 15px 0;
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.navmenu .dropdown:hover ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.navmenu .dropdown ul li {
+    min-width: 220px;
+}
+
+.navmenu .dropdown ul a {
+    font-size: 16px;
+    padding: 10px 20px;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.navmenu .dropdown ul a:hover {
+    background-color: #f1f1f1;
+    color: #7D702F;
+}
+
+/* Mobile Menu Toggle */
+.mobile-nav-toggle {
+    color: #7D702F;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Search Box */
+.input-group {
+    max-width: 300px;
+    margin-right: 20px;
+}
+
+.form-outline {
+    position: relative;
+}
+
+.form-outline input {
+    border: 1px solid #7D702F;
+    padding-right: 40px;
+    text-align: right;
+}
+
+.form-outline i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7D702F;
+}
+
+/* Cart Icon Styling */
+.bi-cart {
+    font-size: 22px;
+    color: #7D702F;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.bi-cart:hover {
+    color: #d1b75b;
+}
+
+/* Dropdown RTL alignment */
+.dropdown ul {
+    text-align: right;
+    direction: rtl;
+}
+
+.dropdown ul li a {
+    padding-right: 20px;
+}
+
+    </style>
+
+
+    <!-- Main CSS File -->
+    <link href="~/Content/css/main.css" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            @if (Session["UserId"] == null)
+            {
+                <a class="leftNav" href="@Url.Action("Login","Users")">تسجيل دخول</a>
+                <a class="leftNav" href="@Url.Action("Create","Users")">تسجيل</a>
+            }
+            else
+            {
+
+                <a class="leftNav" href="@Url.Action("Logout","Users")">تسجيل خروج</a>
+                <a class="leftNav" href="@Url.Action("Profile","Users")">الصفحة الشخصية</a>
+            }
+
+            <a class="leftNav" href="Checkout.html"><i class="bi bi-cart"></i></a>
+
+
+            <div class="input-group" style="width: 300px;">
+                <div class="form-outline" style="flex-grow: 1;">
+                    <input type="search" id="form1" class="form-control" placeholder="بحث"
+                           style="padding-right: 2.25rem;" />
+                </div>
+                <button class="btn btn-outline-secondary" type="button" id="search-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")#contact">تواصل معنا</a></li>
+                    <li><a href="specialOffers.html">عروض خاصة</a></li>
+                    <li class="dropdown">
+                        <a href="#">
+                            <span>الخدمات</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                        </a>
+                        <ul>
+                            <li><a href="@Url.Action("Index","WeddingVenues")">حجز الصالات</a></li>
+                            <li><a href="@Url.Action("Index","Farms")">حجز المزارع</a></li>
+                            <li><a href="@Url.Action("Index","Clothes")">الملابس</a></li>
+                            <li><a href="@Url.Action("Index","Foods")">الطعام والشراب</a></li>
+                            <li><a href="@Url.Action("Index","Photographers")">التصوير</a></li>
+                            <li><a href="invitationCards.html">كروت الدعوة</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Index","Home")#About">عن فرح</a></li>
+                    <li><a href="@Url.Action("Index","Home")">الرئيسية<br></a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <div>
+                <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+                    <img src="~/Content/img/goldlogo.png" alt="logo">
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+
+        @RenderBody()
+
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+    <footer id="footer" class="footer dark-background">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <div class="footer-contact pt-3">
+                            <h4>تابعنا</h4>
+                            <p>إربد، شارع أبو راشد مجمع الرشدان الطابق الثالث</p>
+                            <p class="mt-3"><strong>الهاتف:</strong> <span>0787580676</span></p>
+                            <p><span>FarahOffice96@gmail.com:</span><strong>البريد الإلكتروني</strong></p><br>
+                        </div>
+                        <div class="social-links d-flex mt-4">
+                            <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
+                            <a href="https://www.instagram.com/?hl=en"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+                            <a href="https://x.com/?lang-en="><i class="bi bi-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>خدماتنا</h4>
+                        <ul>
+                            <li> <a href="venues.html">الصالات</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="farms.html">المزارع</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="clothes.html">الملابس</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="food.html">الطعام والشراب</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="photographers.html">التصوير</a><i class="bi bi-chevron-left"></i></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>روابط مفيدة</h4>
+                        <ul>
+                            <li> <a href="Home.html">الرئيسية</a> <i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#About">عن فرح</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#services">الخدمات</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="specialOffers.html">عروض خاصة</a><i class="bi bi-chevron-left"></i></li>
+                            <li> <a href="Home.html#contact">تواصل معنا</a><i class="bi bi-chevron-left"></i></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-12 footer-newsletter">
+                        <h4>
+                            <a href="~/Content/img/logo_white.png" class="logo align-items-center">
+                                <span class="sitename"><img src="~/Content/img/logo_white.png" alt="شعار الموقع"></span>
+                            </a>
+                        </h4>
+                        <p>نساعدك في جعل يومك الأجمل مميزًا ومثاليًا بخدماتنا المتكاملة لحفلات الزفاف في إربد</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/vendor/php-email-form/validate.js"></script>
+    <script src="~/Content//vendor/aos/aos.js"></script>
+    <script src="~/Content/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/Content/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/Content/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Content//vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Content/vendor/purecounter/purecounter_vanilla.js"></script>
+
+    <!-- Main JS File -->
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+
+</html>
