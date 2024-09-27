@@ -1,0 +1,225 @@
+﻿@model MasterPiece.Models.Booking
+@{
+    ViewBag.Title = "نموذج حجز صالة";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/Bookvenue.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<style>
+    .text-danger {
+        display: block;
+        text-align: right;
+    }
+    /* Style for the readonly field */
+    input[readonly] {
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+        /* Remove any hover effects for the readonly fields */
+        input[readonly]:hover {
+            background-color: #e9ecef;
+        }
+
+    /* Disabled button styling */
+    .disabledClass {
+        background-color: #ccc;
+        color: #777;
+        border: none;
+        cursor: not-allowed;
+    }
+
+    button.disabledClass:hover {
+        background-color: #ccc; /* No change on hover */
+    }
+
+    #errorMessage {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+        display: none; /* Hidden by default */
+        text-align: right;
+    }
+</style>
+
+
+<main class="main">
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+        <div class="BookFormcontainer">
+            <div class="form-container">
+                <h2 class="Eachsection-title">نموذج حجز الصالة</h2>
+
+                <form id="paymentForm" action="@Url.Action("ProcessPaymentVenue", "Bookings")" method="post" style="display:none;">
+                    <input type="hidden" name="bookingId" value="@TempData["BookingId"]" /> <!-- Use TempData for Booking ID -->
+                    <input type="hidden" name="venueId" value="@Model.VenueId" /> <!-- Hidden field for Venue ID -->
+                    <input type="hidden" name="value" value="@Model.WeddingVenue.Price" /> <!-- Hidden field for Total Amount -->
+                </form>
+
+
+                @using (Html.BeginForm("Create", "Bookings", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.VenueId)
+                    @Html.HiddenFor(model => model.UserId)
+
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل اسمك الكامل" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل بريدك الإلكتروني", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل رقم هاتفك", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Date -->
+                    <div class="form-group">
+                        <label for="eventDate">تاريخ الحجز</label>
+                        @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "BookingDate" } })
+                        @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Time (From) -->
+                    <div class="form-group">
+                        <label for="eventTimeFrom">وقت الحجز</label>
+                        @Html.EditorFor(model => model.BookingTimeFrom, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+                        @Html.ValidationMessageFor(model => model.BookingTimeFrom, "", new { @class = "text-danger" })
+                        <span id="errorMessage"></span>
+                    </div>
+
+                    <!-- Booking Time (To) -->
+                    <div class="form-group">
+                        <label for="eventTimeTo">وقت الانتهاء</label>
+                        @Html.EditorFor(model => model.BookingTimeTo, new { htmlAttributes = new { @class = "form-control", type = "time", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.BookingTimeTo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label for="specialRequests">طلبات خاصة</label>
+                        @Html.TextAreaFor(model => model.SpecialOrder, new { @class = "form-control", rows = "3", placeholder = "اذكر أي طلبات خاصة" })
+                        @Html.ValidationMessageFor(model => model.SpecialOrder, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn-getstarted sendReq">إرسال الطلب</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+   @if (TempData["BookingSuccess"] != null)
+{
+    <text>
+    Swal.fire({
+        icon: 'success',
+        title: 'نجاح',
+        text: '@TempData["BookingSuccess"]',
+        showCancelButton: true,
+        confirmButtonText: 'الاستمرار للدفع',
+        cancelButtonText: 'إلغاء',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Submit the form to process payment
+            document.getElementById("paymentForm").submit();
+        } else {
+            // Redirect back to the venues page or any other desired page
+            window.location.href = '@Url.Action("Create", "Bookings")';
+        }
+    });
+    </text>
+}
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var submitButton = document.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.classList.add("disabledClass");
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        var dd = String(tomorrow.getDate()).padStart(2, '0');
+        var mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        var yyyy = tomorrow.getFullYear();
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+
+        var dateInput = document.getElementById("BookingDate");
+        dateInput.setAttribute("min", formattedDate);
+
+        var timeFromInput = document.getElementById("BookingTimeFrom");
+        var timeToInput = document.getElementById("BookingTimeTo");
+        var errorMessage = document.getElementById("errorMessage");
+        var dateValid = false;
+        var timeValid = false;
+
+        dateInput.addEventListener("change", function () {
+            dateValid = dateInput.value !== "";
+            checkFormValidity();
+        });
+
+        timeFromInput.addEventListener("change", function () {
+            var selectedTime = this.value;
+            var hours = parseInt(selectedTime.split(":")[0]);
+
+            if (hours >= 16 && hours <= 23) {
+                timeValid = true;
+                errorMessage.style.display = "none";
+
+                var endTimeHours = hours + 2;
+                var minutes = selectedTime.split(":")[1];
+
+                if (endTimeHours > 23) {
+                    endTimeHours -= 24;
+                }
+
+                var formattedEndTime = String(endTimeHours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0');
+
+                timeToInput.value = formattedEndTime;
+                timeToInput.readOnly = true; // Set the field to readonly instead of disabled
+            } else {
+                timeValid = false;
+                errorMessage.style.display = "block";
+                errorMessage.textContent = "يرجى اختيار وقت بين الساعة 4 مساءً و 12 صباحاً";
+            }
+
+            checkFormValidity();
+        });
+
+        function checkFormValidity() {
+            if (dateValid && timeValid) {
+                submitButton.disabled = false;
+                submitButton.classList.remove("disabledClass");
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.add("disabledClass");
+            }
+        }
+    });
+
+
+
+</script>

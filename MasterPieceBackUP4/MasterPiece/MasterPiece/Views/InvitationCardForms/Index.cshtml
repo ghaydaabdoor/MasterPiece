@@ -1,0 +1,90 @@
+﻿@model MasterPiece.Models.InvitationCardForm
+@{
+    ViewBag.Title = "نموذج بطاقة الدعوة";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/EditProfile.css" rel="stylesheet" />
+<style>
+    .form{
+        margin-right:30px;
+    }
+    textarea{
+        text-align: right !important;
+    }
+</style>
+<main class="main profilePage">
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-9 border-right">
+                    <div class="p-3 py-5 form">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 id="sett" class="text-right Eachsection-title">تعبئة معلومات بطاقة الدعوة</h4>
+                        </div>
+
+                        <!-- Start of the form to edit the profile -->
+                        @using (Html.BeginForm("Edit", "InvitationCardForms", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.UserId)
+                            @Html.HiddenFor(model => model.InvitationCardFormId)
+                            @Html.HiddenFor(model => model.CardDesignId);
+
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label class="labels">اسم العروس</label>
+                                    @Html.TextBoxFor(model => model.BrideName, new { @class = "form-control", placeholder = "اسم العروس" })
+                                    @Html.ValidationMessageFor(model => model.BrideName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">اسم العريس</label>
+                                    @Html.TextBoxFor(model => model.GroomName, new { @class = "form-control", placeholder = "اسم العريس" })
+                                    @Html.ValidationMessageFor(model => model.GroomName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <label class="labels">اسم القاعة</label>
+                                    @Html.TextBoxFor(model => model.Venue, new { @class = "form-control", placeholder = "اسم القاعة" })
+                                    @Html.ValidationMessageFor(model => model.Venue, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="labels">التاريخ</label>
+                                    @Html.TextBoxFor(model => model.WeddingDate, new { @class = "form-control", placeholder = "التاريخ", type = "date" })
+                                    @Html.ValidationMessageFor(model => model.WeddingDate, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">ملاحظات إضافية</label>
+                                    @Html.TextAreaFor(model => model.AdditionalNotes, new { @class = "form-control", rows = 3 })
+                                    @Html.ValidationMessageFor(model => model.AdditionalNotes, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit">حفظ</button>
+                            </div>
+                        }
+                        <!-- End of form -->
+                    </div>
+                </div>
+
+                <!-- Invitation card Section -->
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <span class="card-name" style="font-size: 24px; font-weight: bold;">@Model.InvitationCard.CardName</span>
+                        <img class="mt-5" width="400px" src="@Model.InvitationCard.ImageUrl" alt="بطاقة دعوة">
+                        <div</div>
+                        <div class="fullscreen-icon">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                        <span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

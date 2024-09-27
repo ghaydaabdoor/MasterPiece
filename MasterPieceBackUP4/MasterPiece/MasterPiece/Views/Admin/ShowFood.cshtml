@@ -1,0 +1,150 @@
+﻿@model IEnumerable<MasterPiece.Models.Food>
+
+@{
+    ViewBag.Title = "عرض الأطعمة";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    th, td, textarea {
+        text-align: right;
+    }
+
+    h5, h4 {
+        width: 100%;
+        text-align: right;
+    }
+
+    .small-image {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    .swal2-actions {
+        direction: rtl;
+    }
+
+    .swal2-confirm {
+        margin-left: 5px;
+    }
+
+    .swal2-cancel {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض الأطعمة</h2>
+            <a class="btn btn-primary" href="@Url.Action("CreateFood","Admin")">إضافة طعام</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الصورة</th>
+                        <th scope="col">الاسم</th>
+                        <th scope="col">السعر</th>
+                        <th scope="col">التقييم</th>
+                        <th scope="col">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FoodId</td>
+                            <td><img src="~/Content/img/@item.ImageUrl" alt="@item.Name" class="img-thumbnail" style="width:100px;"></td>
+                            <td>@item.Name</td>
+                            <td>@item.Price د.أ</td>
+                            <td>@item.Rate</td>
+                            <td>
+                                <!-- Action Buttons -->
+                                @*<a class="btn btn-sm btn-primary" href="@Url.Action("Details", "Admin", new { id = @item.FoodId })">عرض</a>*@
+                                <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#editModal-@item.FoodId">تعديل</a>
+                                <form id="deleteForm-@item.FoodId" action="@Url.Action("DeleteFood", "Admin", new { id = @item.FoodId })" method="post" style="display:inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.FoodId)">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- Modal for Edit -->
+                        <div class="modal fade" id="editModal-@item.FoodId" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-@item.FoodId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">تعديل الطعام</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @using (Html.BeginForm("EditFood", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
+
+                                            <div class="form-group">
+                                                <label for="FoodName" class="control-label">الاسم</label>
+                                                <input type="text" id="FoodName" name="Name" class="form-control" placeholder="الاسم" value="@item.Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FoodDescription" class="control-label">الوصف</label>
+                                                <textarea id="FoodDescription" name="Description" class="form-control" rows="4" placeholder="الوصف">@item.Description</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FoodPrice" class="control-label">السعر</label>
+                                                <input type="text" id="FoodPrice" name="Price" class="form-control" placeholder="السعر" value="@item.Price">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FoodRate" class="control-label">التقييم</label>
+                                                <input type="number" id="FoodRate" name="Rate" class="form-control" placeholder="التقييم" min="1" max="5" value="@item.Rate">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FoodImageUrl" class="control-label">الصورة</label>
+                                                <input type="text" id="FoodImageUrl" name="ImageUrl" class="form-control" placeholder="الصورة" value="@item.ImageUrl">
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-success btn-lg">حفظ التغييرات</button>
+                                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">إلغاء</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(foodId) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'إلغاء',
+            confirmButtonText: 'تأكيد',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if confirmed
+                document.getElementById('deleteForm-' + foodId).submit();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MasterPiece.Models.InvitationCard>
+
+@{
+    ViewBag.Title = "بطاقات الدعوة";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .cart {
+        transform: translateY(-45px);
+    }
+
+    .btn-getstarted {
+        padding: 5px 10px;
+        border-radius: 0px;
+        border: 2px solid var(--accent-color);
+        background: var(--accent-color);
+        text-align: center;
+        width: 30%;
+        font-size: 14px;
+        height: 35px;
+    }
+
+    #det {
+        color: #34495E;
+        background-color: white;
+        border: 1px solid #34495E;
+    }
+</style>
+
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">كروت الدعوة لحفلات الزفاف<br></p>
+            <p class="Eachsection-description">اختر من بين مجموعة متنوعة من كروت الدعوة الفاخرة المخصصة لحفلات الزفاف. يمكنك اختيار التصميم الذي يناسبك، ثم ملء النموذج بالمعلومات التي ترغب بعرضها على كرت الدعوة. بعد تأكيد الطلب، سيتم إرسال كرت الدعوة المصمم إلى بريدك الإلكتروني. كل تصميم يعكس جمال المناسبة وروح الفرح، اجعل دعوتك مميزة وفريدة من نوعها بإضافة لمستك الخاصة:</p>
+        </div><!-- End Section Title -->
+
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="@item.ImageUrl" alt="" class="img-fluid" style="height: 500px">
+                            </div>
+                            <h3>@item.CardName</h3>
+                            <p>السعر: @item.Price</p>
+                            <div class="stars">
+                                <a class="btn-getstarted details-btn" id="det" href="@Url.Action("Index", "InvitationCardForms", new {id=item.InvitationCardsId})">تعبئة المعلومات</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card Item -->
+                }
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <!-- /EachService Section -->
+
+</main>

@@ -1,0 +1,80 @@
+﻿@model MasterPiece.Models.BookingCloth
+@{
+    ViewBag.Title = "نموذج حجز ملابس";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/Bookvenue.css" rel="stylesheet" />
+
+<main class="main">
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+        <div class="BookFormcontainer">
+            <div class="form-container">
+                <h2 class="Eachsection-title">نموذج حجز الملابس</h2>
+
+                <form id="paymentForm" action="@Url.Action("ProcessPaymentVenue", "Bookings")" method="post" style="display:none;">
+                    <input type="hidden" name="bookingId" value="@TempData["BookingId"]" /> <!-- Use TempData for Booking ID -->
+                    <input type="hidden" name="venueId" value="@Model.VenueId" /> <!-- Hidden field for Venue ID -->
+                    <input type="hidden" name="value" value="@Model.WeddingVenue.Price" /> <!-- Hidden field for Total Amount -->
+                </form>
+
+                @using (Html.BeginForm("CreateClothForm", "Bookings", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ClothId)
+                    @Html.HiddenFor(model => model.UserId)
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل اسمك الكامل" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل بريدك الإلكتروني", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل رقم هاتفك", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Date Start-->
+                    <div class="form-group">
+                        <label for="eventDate">تاريخ بداية الحجز</label>
+                        @Html.EditorFor(model => model.BookingDateFrom, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.BookingDateFrom, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Date End-->
+                    <div class="form-group">
+                        <label for="eventDate">تاريخ نهاية الحجز</label>
+                        @Html.EditorFor(model => model.BookingDateTo, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.BookingDateTo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label for="specialRequests">طلبات خاصة</label>
+                        @Html.TextAreaFor(model => model.SpecialOrder, new { @class = "form-control", rows = "3", placeholder = "اذكر أي طلبات خاصة" })
+                        @Html.ValidationMessageFor(model => model.SpecialOrder, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn-getstarted sendReq">إرسال الطلب</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+
+
+

@@ -1,0 +1,260 @@
+﻿@model IEnumerable<MasterPiece.Models.PhotographViewModel>
+
+
+@{
+    ViewBag.Title = "ShowPhotographers";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    th, td, textarea {
+        text-align: right;
+    }
+
+    h5, h4 {
+        width: 100%;
+        text-align: right;
+    }
+
+    .small-image {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    .swal2-actions {
+        direction: rtl;
+    }
+
+    .swal2-confirm {
+        margin-left: 5px;
+    }
+
+    .swal2-cancel {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض جميع المصورين</h2>
+            <a class="btn btn-primary" href="@Url.Action("CreatePhotgraphers","Admin")">إضافة مصور</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الصورة</th>
+                        <th scope="col">اسم المزرعة</th>
+                        <th scope="col">السعر (دينار)</th>
+                        <th scope="col">التقييم</th>
+                        <th scope="col">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.photographer.PhotographerId</td>
+                            <td><img src="~/Content/img/@item.photographer.ImageUrl" alt="@item.photographer.Name" class="img-thumbnail" style="width:100px;"></td>
+                            <td>@item.photographer.Name</td>
+                            <td>@item.photographer.Price</td>
+                            <td>@item.photographer.Rate</td>
+                            <td>
+                                <!-- Action Buttons -->
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Index", "PhotographerDetails", new { id = @item.photographer.PhotographerId })">عرض</a>
+                                <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#editModal-@item.photographer.PhotographerId">تعديل</a>
+                                <form id="deleteForm-@item.photographer.PhotographerId" action="@Url.Action("DeletePhotgraphers", "Admin", new { id = @item.photographer.PhotographerId })" method="post" style="display:inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.photographer.PhotographerId)">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- Modal for Edit -->
+                        <div class="modal fade" id="editModal-@item.photographer.PhotographerId" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-@item.photographer.PhotographerId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <!-- Added 'modal-lg' for larger modal -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">تعديل تفاصيل المصور</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form for editing farm -->
+                                        @using (Html.BeginForm("EditPhotgraphers", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" id="photogId" name="photographer.PhotographerId" value="@item.photographer.PhotographerId" />
+                                            <input type="hidden" id="photogDetailId" name="photographerDetail.PhotographerDetailId" value="@item.photographerDetail.PhotographerDetailId" />
+
+
+                                            <div class="container-fluid">
+                                                <!-- Farm Details Section -->
+                                                <h4 class="mb-3">تفاصيل  التصوير</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Farm Name -->
+                                                        <div class="form-group">
+                                                            <label for="PhotogName" class="control-label">اسم المصور</label>
+                                                            <input type="text" id="PhotogName" name="photographer.Name" class="form-control" placeholder="اسم المصور" value="@item.photographer.Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Location -->
+                                                        <div class="form-group">
+                                                            <label for="PhotogPrice" class="control-label">السعر</label>
+                                                            <input type="text" id="PhotogPrice" name="photographerDetail.PriceDetails" class="form-control" placeholder="السعر" value="@item.photographerDetail.PriceDetails">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="PhotgImageUrl" class="control-label">الصورة الرئيسية</label>
+                                                            <input type="text" id="PhotgImageUrl" name="photographer.ImageUrl" class="form-control" placeholder="الصورة الرئيسية" value="@item.photographer.ImageUrl">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Rate -->
+                                                        <div class="form-group">
+                                                            <label for="PhotogRate" class="control-label">التقييم</label>
+                                                            <input type="number" id="PhotogRate" name="photographer.Rate" class="form-control" placeholder="التقييم" min="1" max="5" value="@item.photographer.Rate">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- Farm Additional Details -->
+                                                @if (item.photographerDetail != null)
+                                                {
+                                                    <hr />
+                                                    <h4 class="mb-3">تفاصيل إضافية</h4>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label">الصور</label>
+                                                        <div class="row">
+                                                            <!-- Editable URLs for images -->
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl1" class="img-thumbnail small-image" data-image="1" onclick="showLargeImage('@item.photographerDetail.ImageUrl1')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl1" data-image="1" name="photographerDetail.ImageUrl1" oninput="updateImage(1, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl2" class="img-thumbnail small-image" data-image="2" onclick="showLargeImage('@item.photographerDetail.ImageUrl2')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl2" data-image="2" name="photographerDetail.ImageUrl2" oninput="updateImage(2, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl3" class="img-thumbnail small-image" data-image="3" onclick="showLargeImage('@item.photographerDetail.ImageUrl3')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl3" data-image="3" name="photographerDetail.ImageUrl3" oninput="updateImage(3, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl4" class="img-thumbnail small-image" data-image="4" onclick="showLargeImage('@item.photographerDetail.ImageUrl4')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl4" data-image="4" name="photographerDetail.ImageUrl4" oninput="updateImage(4, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl5" class="img-thumbnail small-image" data-image="5" onclick="showLargeImage('@item.photographerDetail.ImageUrl5')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl5" data-image="5" name="photographerDetail.ImageUrl5" oninput="updateImage(5, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.photographerDetail.ImageUrl6" class="img-thumbnail small-image" data-image="6" onclick="showLargeImage('@item.photographerDetail.ImageUrl6')" />
+                                                                <input type="text" class="form-control" value="@item.photographerDetail.ImageUrl6" data-image="6" name="photographerDetail.ImageUrl6" oninput="updateImage(6, this)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Description -->
+                                                    <div class="form-group">
+                                                        <label for="PhotogDescription" class="control-label">الوصف</label>
+                                                        <textarea id="PhotogDescription" name="photographerDetail.Description" class="form-control" rows="4" placeholder="الوصف">@item.photographerDetail.Description</textarea>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <p>لا توجد تفاصيل مضافة لهذه المصور</p>
+                                                }
+
+                                                <!-- Submit Button -->
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-success btn-lg">حفظ التغييرات</button>
+                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">إلغاء</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal to Display Large Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="largeImage" src="" alt="Large Image" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function confirmDelete(photgId) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'إلغاء',
+            confirmButtonText: 'تأكيد',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if confirmed
+                document.getElementById('deleteForm-' + photgId).submit();
+            }
+        });
+    }
+
+    function showLargeImage(imageUrl) {
+        // Set the source of the large image in the modal
+        document.getElementById("largeImage").src = imageUrl;
+
+        // Show the modal
+        $('#imageModal').modal('show');
+    }
+
+    function updateImage(imageIndex, inputElement) {
+        // Get the corresponding image element using the data attribute
+        var imageElement = document.querySelector(`img[data-image="${imageIndex}"]`);
+        // Update the image src with the new URL
+        if (imageElement) {
+            imageElement.src = inputElement.value; // Update the image source
+        } else {
+            console.error(`Image with data-image="${imageIndex}" not found.`);
+        }
+    }
+
+</script>
+
