@@ -1,0 +1,264 @@
+﻿@model MasterPiece.Models.WeddingVenueViewModel
+
+@{
+    ViewBag.Title = "إضافة قاعة";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    h2, label, input, textarea {
+        text-align: right;
+    }
+
+    label {
+        width: 100%;
+        text-align: right;
+        display: block;
+    }
+
+    ::placeholder {
+        text-align: right;
+    }
+
+    .form-control {
+        border-radius: 0.25rem;
+    }
+
+    .card {
+        border-radius: 0.5rem;
+    }
+
+    .image-preview {
+        margin-top: 10px;
+        max-width: 100%;
+        height: auto;
+        text-align: right;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+
+    .image-preview img {
+        width: 100px;
+    }
+
+    .image-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem; /* Space between images */
+        direction: rtl;
+    }
+
+        .image-row .form-floating {
+            flex: 1 1 calc(33.333% - 1rem); /* Three items per row, minus gap */
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+
+            .image-row .form-floating img {
+                width: 100px; /* Thumbnail size */
+                height: auto; /* Maintain aspect ratio */
+            }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header text-center">
+                    <h2>إضافة قاعة جديدة</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("CreateVenue", "Admin", FormMethod.Post, new { enctype = "multipart /form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                        <!-- Venue Name -->
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.Name, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "اسم القاعة" } })
+                            @Html.LabelFor(model => model.Venue.Name, "اسم القاعة", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Location -->
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.Location, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "الموقع" } })
+                            @Html.LabelFor(model => model.Venue.Location, "الموقع", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.Location, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Price -->
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.Price, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "السعر" } })
+                            @Html.LabelFor(model => model.Venue.Price, "السعر", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.Price, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Rate -->
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.Rate, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "التقييم" } })
+                            @Html.LabelFor(model => model.Venue.Rate, "التقييم", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.Rate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Discount -->
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.Discount, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "الخصم" } })
+                            @Html.LabelFor(model => model.Venue.Discount, "الخصم", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.Discount, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Venue.ImageUrl, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl" } })
+                            @Html.LabelFor(model => model.Venue.ImageUrl, "رابط الصورة الرئيسية", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.Venue.ImageUrl, "", new { @class = "text-danger" })
+                            <div class="image-preview">
+                                <img id="imagePreview" src="" />
+                            </div>
+                        </div>
+
+                        <!-- Additional Image URLs with Preview -->
+                        <!-- Row 1 -->
+                        <div class="image-row">
+                            <!-- Image URL 1 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl1, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl1" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl1, "رابط الصورة 1", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl1, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview1" src="" />
+                                </div>
+                            </div>
+
+                            <!-- Image URL 2 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl2, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl2" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl2, "رابط الصورة 2", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl2, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview2" src="" />
+                                </div>
+                            </div>
+
+                            <!-- Image URL 3 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl3, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl3" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl3, "رابط الصورة 3", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl3, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview3" src="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="image-row">
+                            <!-- Image URL 4 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl4, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl4" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl4, "رابط الصورة 4", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl4, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview4" src="" />
+                                </div>
+                            </div>
+
+                            <!-- Image URL 5 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl5, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl5" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl5, "رابط الصورة 5", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl5, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview5" src="" />
+                                </div>
+                            </div>
+
+                            <!-- Image URL 6 -->
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(model => model.VenueDetails.ImageUrl6, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الصورة", id = "imageUrl6" } })
+                                @Html.LabelFor(model => model.VenueDetails.ImageUrl6, "رابط الصورة 6", new { @class = "form-label" })
+                                @Html.ValidationMessageFor(model => model.VenueDetails.ImageUrl6, "", new { @class = "text-danger" })
+                                <div class="image-preview">
+                                    <img id="imagePreview6" src="" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Description and Other Fields -->
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.VenueDetails.Description, "الوصف", new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.VenueDetails.Description, new { @class = "form-control", rows = 4, placeholder = "الوصف" })
+                            @Html.ValidationMessageFor(model => model.VenueDetails.Description, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.VenueDetails.Services, "الخدمات", new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.VenueDetails.Services, new { @class = "form-control", rows = 4, placeholder = "الخدمات" })
+                            @Html.ValidationMessageFor(model => model.VenueDetails.Services, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.VenueDetails.PriceDetails, "تفاصيل السعر", new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.VenueDetails.PriceDetails, new { @class = "form-control", rows = 2, placeholder = "تفاصيل السعر" })
+                            @Html.ValidationMessageFor(model => model.VenueDetails.PriceDetails, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.VenueDetails.CapacityNotes, "السعة", new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.VenueDetails.CapacityNotes, new { @class = "form-control", rows = 2, placeholder = "وسف السعة" })
+                            @Html.ValidationMessageFor(model => model.VenueDetails.CapacityNotes, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.VenueDetails.Location, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "رابط الخريطة", id = "locationUrl" } })
+                            @Html.LabelFor(model => model.VenueDetails.Location, "الخريطة", new { @class = "form-label" })
+                            @Html.ValidationMessageFor(model => model.VenueDetails.Location, "", new { @class = "text-danger" })
+                            <div class="image-preview">
+                                <img id="locationPreview" src="" alt="Map Preview" />
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">إضافة القاعة</button>
+                            <a href="@Url.Action("ShowVenues", "Admin")" class="btn btn-secondary btn-lg">العودة إلى القائمة</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateImagePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        input.addEventListener('input', () => {
+            preview.src = input.value;
+        });
+    }
+
+    // Initialize image previews
+    updateImagePreview('imageUrl1', 'imagePreview1');
+    updateImagePreview('imageUrl2', 'imagePreview2');
+    updateImagePreview('imageUrl3', 'imagePreview3');
+    updateImagePreview('imageUrl4', 'imagePreview4');
+    updateImagePreview('imageUrl5', 'imagePreview5');
+    updateImagePreview('imageUrl6', 'imagePreview6');
+
+    // Initialize image previews
+    updateImagePreview('imageUrl', 'imagePreview');
+    for (let i = 1; i <= 6; i++) {
+        updateImagePreview('imageUrl' + i, 'imagePreview' + i);
+    }
+    updateImagePreview('locationUrl', 'locationPreview');
+</script>

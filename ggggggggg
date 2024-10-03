@@ -1,0 +1,64 @@
+ public ActionResult CreateFarmForm(int? id)
+ {
+
+     int userId = (int)Session["UserId"];
+
+     var user = db.Users.FirstOrDefault(u => u.UserId == userId);
+
+     if (user != null)
+     {
+         var model = new Booking
+         {
+             Email = user.Email,
+             Phone = user.Phone,
+             UserId = userId,
+             FarmId = id,
+             Farm = db.Farms.FirstOrDefault(v => v.FarmId == id),
+         };
+         return View(model);
+     }
+     return View(new Booking());
+ }
+
+ // POST: Bookings/Create
+ // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+ // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+ [HttpPost]
+ [ValidateAntiForgeryToken]
+ public ActionResult CreateFarmForm([Bind(Include = "BookingId,UserId,FullName,Email,Phone,BookingDate,BookingTimeFrom,SpecialOrder,IsApproved,BookingTimeTo,FarmId")] Booking booking)
+ {
+     if (booking.BookingDate == null)
+     {
+         // Add error message to the ModelState
+         ModelState.AddModelError("BookingDate", "يرجى تحديد تاريخ الحجز");
+     }
+     // Check for existing bookings at the same farm, date, and overlapping time
+     var conflictingBooking = db.Bookings
+         .Where(b => b.FarmId == booking.FarmId
+                     && b.BookingDate == booking.BookingDate
+                     && ((booking.BookingTimeFrom >= b.BookingTimeFrom && booking.BookingTimeFrom < b.BookingTimeTo)
+                         || (booking.BookingTimeTo > b.BookingTimeFrom && booking.BookingTimeTo <= b.BookingTimeTo)
+                         || (booking.BookingTimeFrom <= b.BookingTimeFrom && booking.BookingTimeTo >= b.BookingTimeTo)))
+         .FirstOrDefault();
+
+     if (conflictingBooking != null)
+     {
+         ModelState.AddModelError("BookingTimeFrom", "هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر");
+         return View(booking);
+     }
+     if (ModelState.IsValid)
+     {
+         db.Bookings.Add(booking);
+         db.SaveChanges();
+
+         TempData["BookingId"] = booking.BookingId;
+         TempData["BookingSuccess"] = "تم حجزك بنجاح";
+         TempData.Keep("BookingSuccess");
+         return RedirectToAction("CreateFarmForm", "Bookings", new { id = booking.FarmId });
+     }
+
+     ViewBag.UserId = new SelectList(db.Users, "UserId", "FirstName", booking.UserId);
+     return View(booking);
+ }
+
+

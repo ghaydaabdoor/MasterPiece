@@ -1,0 +1,74 @@
+﻿.cart {
+    transform: translateY(-45px);
+}
+
+.btn-getstarted {
+    padding: 5px 10px;
+    border-radius: 0px;
+    border: 2px solid var(--accent-color);
+    background: var(--accent-color);
+    text-align: center;
+    width: 30%;
+    font-size: 14px;
+    height: 35px;
+}
+
+#det {
+    color: #34495E;
+    background-color: white;
+    border: 1px solid #34495E;
+}
+
+.section .card .card-img img {
+    height: 450px;
+}
+
+.section .card {
+    height: 600px;
+}
+/* Custom select styling to match the button */
+.custom-select-dropdown {
+    background-color: #34495E;
+    color: white;
+    border: 2px solid #34495E;
+    border-radius: 0;
+    padding: 5px 25px;
+    width: 200px;
+    text-align: center;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+}
+
+    .custom-select-dropdown:hover {
+        background-color: #ffffff;
+        color: #34495E;
+    }
+
+    .custom-select-dropdown:focus {
+        outline: none;
+        border-color: #34495E;
+    }
+
+    .custom-select-dropdown option {
+        color: #34495E;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        text-align: right;
+        direction: rtl; /* RTL for Arabic text alignment */
+    }
+
+.custom-dropdown .custom-select-dropdown option:hover {
+    background-color: #34495E;
+    color: white;
+}
+
+/* Custom arrow styling */
+.custom-select-dropdown::-ms-expand {
+    display: none; /* Remove default dropdown arrow in IE */
+}

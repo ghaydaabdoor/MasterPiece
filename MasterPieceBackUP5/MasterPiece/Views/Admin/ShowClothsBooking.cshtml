@@ -1,0 +1,196 @@
+﻿@model IEnumerable<MasterPiece.Models.BookingCloth>
+
+@{
+    ViewBag.Title = "عرض حجوزات الملابس";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Styling for Arabic right alignment */
+    th, td, textarea, h5, h4 {
+        text-align: right;
+    }
+
+    /* Align text and buttons from right */
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    /* Custom button alignments */
+    .swal2-actions {
+        direction: rtl; /* Align buttons from right to left */
+    }
+
+    .swal2-confirm {
+        margin-left: 5px; /* Spacing between buttons */
+    }
+
+    .swal2-cancel {
+        margin-right: 5px; /* Spacing between buttons */
+    }
+
+    .customWidth {
+        max-width: 180px;
+    }
+
+    /* Additional styling for consistent spacing and fonts */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    input[type="text"], input[type="email"], input[type="date"], input[type="time"], textarea {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض حجوزات الملابس</h2>
+            <a class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#addBookingModal">إنشاء حجز جديد</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الاسم</th>
+                        <th scope="col">بداية الحجز</th>
+                        <th scope="col">نهاية الحجز</th>
+                        <th scope="col">اسم المستخدم</th>
+                        <th scope="col">البريد الإلكتروني</th>
+                        <th scope="col">رقم الهاتف</th>
+                        <th scope="col">الطلبات الخاصة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.BookingClothId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Cloth.Name)</td>
+                            <td>@item.BookingDateFrom.ToString("yyyy-MM-dd")</td>
+                            <td>@item.BookingDateTo.ToString("yyyy-MM-dd")</td>
+                            <td>@Html.DisplayFor(modelItem => item.User.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                            <td>@Html.DisplayFor(modelItem => item.SpecialOrder)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Adding Booking -->
+<div class="modal fade" id="addBookingModal" tabindex="-1" role="dialog" aria-labelledby="addBookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBookingModalLabel">إنشاء حجز جديد</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm" action="/Admin/AddClothBooking" method="post">
+                    <!-- Anti-Forgery Token -->
+                    @Html.AntiForgeryToken()
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        <input type="text" id="fullName" name="FullName" class="form-control" placeholder="الاسم الكامل لصاحب الحجز" />
+                        <span class="text-danger" id="fullName-error"></span>
+                    </div>
+
+                    <!-- Cloth Dropdown in the Modal Form -->
+                    <div class="form-group">
+                        <label for="ClothId" class="control-label">الاسم</label>
+                        <select id="ClothId" name="ClothId" class="form-control">
+                            <option value="">اختر الملابس</option>
+                            @if (ViewBag.Cloth != null)
+                            {
+                                foreach (var cloth in ViewBag.Cloth)
+                                {
+                                    <option value="@cloth.ClothId">@cloth.Name</option>
+                                }
+                            }
+                        </select>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="VenueId" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- Booking Date Start -->
+                    <div class="form-group">
+                        <label for="BookingDate">تاريخ بداية الحجز</label>
+                        <input type="date" id="BookingDate" name="BookingDateFrom" class="form-control" />
+                        <span class="text-danger" id="BookingDateFrom-error"></span>
+                    </div>
+
+                    <!-- Booking Date End -->
+                    <div class="form-group">
+                        <label for="BookingDateTo">تاريخ نهاية الحجز</label>
+                        <input type="date" id="BookingDateTo" name="BookingDateTo" class="form-control" readonly />
+                        <span class="text-danger" id="BookingDateTo-error"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-success">حفظ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var submitButton = document.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.classList.add("disabledClass");
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        var dd = String(tomorrow.getDate()).padStart(2, '0');
+        var mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        var yyyy = tomorrow.getFullYear();
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+
+        var dateInput = document.getElementById("BookingDate");
+        dateInput.setAttribute("min", formattedDate);
+
+        var bookingDateToInput = document.getElementById("BookingDateTo"); // Make sure to have an id for this input
+        var dateValid = false;
+
+        dateInput.addEventListener("change", function () {
+            dateValid = dateInput.value !== "";
+            if (dateValid) {
+                var startDate = new Date(dateInput.value);
+                var endDate = new Date(startDate);
+                endDate.setDate(startDate.getDate() + 14); // Add 14 days
+
+                var endDateFormatted = endDate.toISOString().split('T')[0]; // Format to YYYY-MM-DD
+                bookingDateToInput.value = endDateFormatted; // Set the value of BookingDateTo
+            }
+            checkFormValidity();
+        });
+
+        function checkFormValidity() {
+            if (dateValid) {
+                submitButton.disabled = false;
+                submitButton.classList.remove("disabledClass");
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.add("disabledClass");
+            }
+        }
+    });
+</script>
+
+

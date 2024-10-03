@@ -1,0 +1,1497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MasterPieceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookingCloths">
+          <Key>
+            <PropertyRef Name="BookingClothId" />
+          </Key>
+          <Property Name="BookingClothId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="BookingDateFrom" Type="date" Nullable="false" />
+          <Property Name="BookingDateTo" Type="date" Nullable="false" />
+          <Property Name="SpecialOrder" Type="nvarchar(max)" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="ClothId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bookings">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="BookingDate" Type="date" Nullable="false" />
+          <Property Name="SpecialOrder" Type="nvarchar(max)" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="VenueId" Type="int" />
+          <Property Name="FarmId" Type="int" />
+          <Property Name="BookingTimeFrom" Type="time" Precision="7" Nullable="false" />
+          <Property Name="BookingTimeTo" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClothDetails">
+          <Key>
+            <PropertyRef Name="ClothDetailId" />
+          </Key>
+          <Property Name="ClothDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClothId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl1" Type="nvarchar(max)" />
+          <Property Name="ImageUrl2" Type="nvarchar(max)" />
+          <Property Name="ImageUrl3" Type="nvarchar(max)" />
+          <Property Name="ImageUrl4" Type="nvarchar(max)" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ClothMaterial" Type="nvarchar(max)" />
+          <Property Name="Features" Type="nvarchar(max)" />
+          <Property Name="PriceDetails" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clothes">
+          <Key>
+            <PropertyRef Name="ClothId" />
+          </Key>
+          <Property Name="ClothId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FarmDetails">
+          <Key>
+            <PropertyRef Name="FarmDetailId" />
+          </Key>
+          <Property Name="FarmDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FarmId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl4" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl6" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Capacity" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="PriceDetails" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Farms">
+          <Key>
+            <PropertyRef Name="FarmId" />
+          </Key>
+          <Property Name="FarmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Discount" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FoodDetails">
+          <Key>
+            <PropertyRef Name="FoodDetailId" />
+          </Key>
+          <Property Name="FoodDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="InvitationCardForm">
+          <Key>
+            <PropertyRef Name="InvitationCardFormId" />
+          </Key>
+          <Property Name="InvitationCardFormId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CardDesignId" Type="int" />
+          <Property Name="GroomName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BrideName" Type="nvarchar" MaxLength="255" />
+          <Property Name="WeddingDate" Type="date" />
+          <Property Name="Venue" Type="nvarchar" MaxLength="255" />
+          <Property Name="AdditionalNotes" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InvitationCards">
+          <Key>
+            <PropertyRef Name="InvitationCardsId" />
+          </Key>
+          <Property Name="InvitationCardsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingId" Type="int" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CVV" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ExpirationYear" Type="int" Nullable="false" />
+          <Property Name="ExpirationMonth" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhotographerDetails">
+          <Key>
+            <PropertyRef Name="PhotographerDetailId" />
+          </Key>
+          <Property Name="PhotographerDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhotographerId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl4" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl6" Type="nvarchar" MaxLength="255" />
+          <Property Name="PriceDetails" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Photographers">
+          <Key>
+            <PropertyRef Name="PhotographerId" />
+          </Key>
+          <Property Name="PhotographerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="RegisteredServices">
+          <Key>
+            <PropertyRef Name="RegisteredServiceId" />
+          </Key>
+          <Property Name="RegisteredServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="PersonalImage" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WeddingCarts">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImageUrl1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl4" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl6" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WeddingVenueDetails">
+          <Key>
+            <PropertyRef Name="VenueDetailId" />
+          </Key>
+          <Property Name="VenueDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VenueId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageUrl1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl4" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl6" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Services" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="PriceDetails" Type="nvarchar(max)" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="CapacityNotes" Type="nvarchar" MaxLength="255" />
+          <Property Name="Location" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WeddingVenues">
+          <Key>
+            <PropertyRef Name="VenueId" />
+          </Key>
+          <Property Name="VenueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Discount" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <Association Name="FK__BookingCl__Cloth__5224328E">
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
+          <End Role="BookingCloths" Type="Self.BookingCloths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clothes">
+              <PropertyRef Name="ClothId" />
+            </Principal>
+            <Dependent Role="BookingCloths">
+              <PropertyRef Name="ClothId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingCl__UserI__51300E55">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="BookingCloths" Type="Self.BookingCloths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookingCloths">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__FarmId__4E53A1AA">
+          <End Role="Farms" Type="Self.Farms" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farms">
+              <PropertyRef Name="FarmId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="FarmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__UserId__693CA210">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__VenueI__4D5F7D71">
+          <End Role="WeddingVenues" Type="Self.WeddingVenues" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeddingVenues">
+              <PropertyRef Name="VenueId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClothDeta__Cloth__2EDAF651">
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
+          <End Role="ClothDetails" Type="Self.ClothDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clothes">
+              <PropertyRef Name="ClothId" />
+            </Principal>
+            <Dependent Role="ClothDetails">
+              <PropertyRef Name="ClothId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FarmDetai__FarmI__2BFE89A6">
+          <End Role="Farms" Type="Self.Farms" Multiplicity="1" />
+          <End Role="FarmDetails" Type="Self.FarmDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farms">
+              <PropertyRef Name="FarmId" />
+            </Principal>
+            <Dependent Role="FarmDetails">
+              <PropertyRef Name="FarmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FoodDetai__FoodI__5812160E">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="FoodDetails" Type="Self.FoodDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="FoodDetails">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__CardD__40058253">
+          <End Role="InvitationCards" Type="Self.InvitationCards" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvitationCards">
+              <PropertyRef Name="InvitationCardsId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="CardDesignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__Order__40F9A68C">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__UserI__3F115E1A">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__BookingI__6C190EBB">
+          <End Role="Bookings" Type="Self.Bookings" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bookings">
+              <PropertyRef Name="BookingId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__OrderI__6EF57B66">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photograp__Photo__6383C8BA">
+          <End Role="Photographers" Type="Self.Photographers" Multiplicity="1" />
+          <End Role="PhotographerDetails" Type="Self.PhotographerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photographers">
+              <PropertyRef Name="PhotographerId" />
+            </Principal>
+            <Dependent Role="PhotographerDetails">
+              <PropertyRef Name="PhotographerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registere__Servi__73BA3083">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="RegisteredServices" Type="Self.RegisteredServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="RegisteredServices">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registere__UserI__72C60C4A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RegisteredServices" Type="Self.RegisteredServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RegisteredServices">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeddingVe__Venue__151B244E">
+          <End Role="WeddingVenues" Type="Self.WeddingVenues" Multiplicity="1" />
+          <End Role="WeddingVenueDetails" Type="Self.WeddingVenueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeddingVenues">
+              <PropertyRef Name="VenueId" />
+            </Principal>
+            <Dependent Role="WeddingVenueDetails">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MasterPieceModelStoreContainer">
+          <EntitySet Name="BookingCloths" EntityType="Self.BookingCloths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClothDetails" EntityType="Self.ClothDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clothes" EntityType="Self.Clothes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FarmDetails" EntityType="Self.FarmDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Farms" EntityType="Self.Farms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodDetails" EntityType="Self.FoodDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvitationCardForm" EntityType="Self.InvitationCardForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvitationCards" EntityType="Self.InvitationCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotographerDetails" EntityType="Self.PhotographerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photographers" EntityType="Self.Photographers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegisteredServices" EntityType="Self.RegisteredServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeddingCarts" EntityType="Self.WeddingCarts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeddingVenueDetails" EntityType="Self.WeddingVenueDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeddingVenues" EntityType="Self.WeddingVenues" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BookingCl__Cloth__5224328E" Association="Self.FK__BookingCl__Cloth__5224328E">
+            <End Role="Clothes" EntitySet="Clothes" />
+            <End Role="BookingCloths" EntitySet="BookingCloths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingCl__UserI__51300E55" Association="Self.FK__BookingCl__UserI__51300E55">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookingCloths" EntitySet="BookingCloths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__FarmId__4E53A1AA" Association="Self.FK__Bookings__FarmId__4E53A1AA">
+            <End Role="Farms" EntitySet="Farms" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__UserId__693CA210" Association="Self.FK__Bookings__UserId__693CA210">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__VenueI__4D5F7D71" Association="Self.FK__Bookings__VenueI__4D5F7D71">
+            <End Role="WeddingVenues" EntitySet="WeddingVenues" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClothDeta__Cloth__2EDAF651" Association="Self.FK__ClothDeta__Cloth__2EDAF651">
+            <End Role="Clothes" EntitySet="Clothes" />
+            <End Role="ClothDetails" EntitySet="ClothDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FarmDetai__FarmI__2BFE89A6" Association="Self.FK__FarmDetai__FarmI__2BFE89A6">
+            <End Role="Farms" EntitySet="Farms" />
+            <End Role="FarmDetails" EntitySet="FarmDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FoodDetai__FoodI__5812160E" Association="Self.FK__FoodDetai__FoodI__5812160E">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="FoodDetails" EntitySet="FoodDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__CardD__40058253" Association="Self.FK__Invitatio__CardD__40058253">
+            <End Role="InvitationCards" EntitySet="InvitationCards" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__Order__40F9A68C" Association="Self.FK__Invitatio__Order__40F9A68C">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__UserI__3F115E1A" Association="Self.FK__Invitatio__UserI__3F115E1A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__BookingI__6C190EBB" Association="Self.FK__Orders__BookingI__6C190EBB">
+            <End Role="Bookings" EntitySet="Bookings" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__OrderI__6EF57B66" Association="Self.FK__Payments__OrderI__6EF57B66">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photograp__Photo__6383C8BA" Association="Self.FK__Photograp__Photo__6383C8BA">
+            <End Role="Photographers" EntitySet="Photographers" />
+            <End Role="PhotographerDetails" EntitySet="PhotographerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registere__Servi__73BA3083" Association="Self.FK__Registere__Servi__73BA3083">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="RegisteredServices" EntitySet="RegisteredServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registere__UserI__72C60C4A" Association="Self.FK__Registere__UserI__72C60C4A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RegisteredServices" EntitySet="RegisteredServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeddingVe__Venue__151B244E" Association="Self.FK__WeddingVe__Venue__151B244E">
+            <End Role="WeddingVenues" EntitySet="WeddingVenues" />
+            <End Role="WeddingVenueDetails" EntitySet="WeddingVenueDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MasterPieceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookingCloth">
+          <Key>
+            <PropertyRef Name="BookingClothId" />
+          </Key>
+          <Property Name="BookingClothId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BookingDateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BookingDateTo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SpecialOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="ClothId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cloth" Relationship="Self.FK__BookingCl__Cloth__5224328E" FromRole="BookingCloths" ToRole="Clothes" />
+          <NavigationProperty Name="User" Relationship="Self.FK__BookingCl__UserI__51300E55" FromRole="BookingCloths" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SpecialOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="VenueId" Type="Int32" />
+          <Property Name="FarmId" Type="Int32" />
+          <Property Name="BookingTimeFrom" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="BookingTimeTo" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Farm" Relationship="Self.FK__Bookings__FarmId__4E53A1AA" FromRole="Bookings" ToRole="Farms" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Bookings__UserId__693CA210" FromRole="Bookings" ToRole="Users" />
+          <NavigationProperty Name="WeddingVenue" Relationship="Self.FK__Bookings__VenueI__4D5F7D71" FromRole="Bookings" ToRole="WeddingVenues" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__BookingI__6C190EBB" FromRole="Bookings" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="ClothDetail">
+          <Key>
+            <PropertyRef Name="ClothDetailId" />
+          </Key>
+          <Property Name="ClothDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClothId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClothMaterial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PriceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cloth" Relationship="Self.FK__ClothDeta__Cloth__2EDAF651" FromRole="ClothDetails" ToRole="Clothes" />
+        </EntityType>
+        <EntityType Name="Cloth">
+          <Key>
+            <PropertyRef Name="ClothId" />
+          </Key>
+          <Property Name="ClothId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookingCloths" Relationship="Self.FK__BookingCl__Cloth__5224328E" FromRole="Clothes" ToRole="BookingCloths" />
+          <NavigationProperty Name="ClothDetails" Relationship="Self.FK__ClothDeta__Cloth__2EDAF651" FromRole="Clothes" ToRole="ClothDetails" />
+        </EntityType>
+        <EntityType Name="FarmDetail">
+          <Key>
+            <PropertyRef Name="FarmDetailId" />
+          </Key>
+          <Property Name="FarmDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FarmId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="PriceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Farm" Relationship="Self.FK__FarmDetai__FarmI__2BFE89A6" FromRole="FarmDetails" ToRole="Farms" />
+        </EntityType>
+        <EntityType Name="Farm">
+          <Key>
+            <PropertyRef Name="FarmId" />
+          </Key>
+          <Property Name="FarmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__FarmId__4E53A1AA" FromRole="Farms" ToRole="Bookings" />
+          <NavigationProperty Name="FarmDetails" Relationship="Self.FK__FarmDetai__FarmI__2BFE89A6" FromRole="Farms" ToRole="FarmDetails" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FoodDetails" Relationship="Self.FK__FoodDetai__FoodI__5812160E" FromRole="Food" ToRole="FoodDetails" />
+        </EntityType>
+        <EntityType Name="FoodDetail">
+          <Key>
+            <PropertyRef Name="FoodDetailId" />
+          </Key>
+          <Property Name="FoodDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Food" Relationship="Self.FK__FoodDetai__FoodI__5812160E" FromRole="FoodDetails" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="InvitationCardForm">
+          <Key>
+            <PropertyRef Name="InvitationCardFormId" />
+          </Key>
+          <Property Name="InvitationCardFormId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CardDesignId" Type="Int32" />
+          <Property Name="GroomName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BrideName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WeddingDate" Type="DateTime" Precision="0" />
+          <Property Name="Venue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InvitationCard" Relationship="Self.FK__Invitatio__CardD__40058253" FromRole="InvitationCardForm" ToRole="InvitationCards" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Invitatio__Order__40F9A68C" FromRole="InvitationCardForm" ToRole="Orders" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Invitatio__UserI__3F115E1A" FromRole="InvitationCardForm" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="InvitationCard">
+          <Key>
+            <PropertyRef Name="InvitationCardsId" />
+          </Key>
+          <Property Name="InvitationCardsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="InvitationCardForms" Relationship="Self.FK__Invitatio__CardD__40058253" FromRole="InvitationCards" ToRole="InvitationCardForm" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingId" Type="Int32" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Orders__BookingI__6C190EBB" FromRole="Orders" ToRole="Bookings" />
+          <NavigationProperty Name="InvitationCardForms" Relationship="Self.FK__Invitatio__Order__40F9A68C" FromRole="Orders" ToRole="InvitationCardForm" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__OrderI__6EF57B66" FromRole="Orders" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CVV" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpirationYear" Type="Int32" Nullable="false" />
+          <Property Name="ExpirationMonth" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Payments__OrderI__6EF57B66" FromRole="Payments" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="PhotographerDetail">
+          <Key>
+            <PropertyRef Name="PhotographerDetailId" />
+          </Key>
+          <Property Name="PhotographerDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhotographerId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PriceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Photographer" Relationship="Self.FK__Photograp__Photo__6383C8BA" FromRole="PhotographerDetails" ToRole="Photographers" />
+        </EntityType>
+        <EntityType Name="Photographer">
+          <Key>
+            <PropertyRef Name="PhotographerId" />
+          </Key>
+          <Property Name="PhotographerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhotographerDetails" Relationship="Self.FK__Photograp__Photo__6383C8BA" FromRole="Photographers" ToRole="PhotographerDetails" />
+        </EntityType>
+        <EntityType Name="RegisteredService">
+          <Key>
+            <PropertyRef Name="RegisteredServiceId" />
+          </Key>
+          <Property Name="RegisteredServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__Registere__Servi__73BA3083" FromRole="RegisteredServices" ToRole="Services" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Registere__UserI__72C60C4A" FromRole="RegisteredServices" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RegisteredServices" Relationship="Self.FK__Registere__Servi__73BA3083" FromRole="Services" ToRole="RegisteredServices" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookingCloths" Relationship="Self.FK__BookingCl__UserI__51300E55" FromRole="Users" ToRole="BookingCloths" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__UserId__693CA210" FromRole="Users" ToRole="Bookings" />
+          <NavigationProperty Name="InvitationCardForms" Relationship="Self.FK__Invitatio__UserI__3F115E1A" FromRole="Users" ToRole="InvitationCardForm" />
+          <NavigationProperty Name="RegisteredServices" Relationship="Self.FK__Registere__UserI__72C60C4A" FromRole="Users" ToRole="RegisteredServices" />
+        </EntityType>
+        <EntityType Name="WeddingCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WeddingVenueDetail">
+          <Key>
+            <PropertyRef Name="VenueDetailId" />
+          </Key>
+          <Property Name="VenueDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VenueId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Services" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="PriceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="CapacityNotes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WeddingVenue" Relationship="Self.FK__WeddingVe__Venue__151B244E" FromRole="WeddingVenueDetails" ToRole="WeddingVenues" />
+        </EntityType>
+        <EntityType Name="WeddingVenue">
+          <Key>
+            <PropertyRef Name="VenueId" />
+          </Key>
+          <Property Name="VenueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__VenueI__4D5F7D71" FromRole="WeddingVenues" ToRole="Bookings" />
+          <NavigationProperty Name="WeddingVenueDetails" Relationship="Self.FK__WeddingVe__Venue__151B244E" FromRole="WeddingVenues" ToRole="WeddingVenueDetails" />
+        </EntityType>
+        <Association Name="FK__BookingCl__Cloth__5224328E">
+          <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
+          <End Role="BookingCloths" Type="Self.BookingCloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clothes">
+              <PropertyRef Name="ClothId" />
+            </Principal>
+            <Dependent Role="BookingCloths">
+              <PropertyRef Name="ClothId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookingCl__UserI__51300E55">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="BookingCloths" Type="Self.BookingCloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="BookingCloths">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__FarmId__4E53A1AA">
+          <End Role="Farms" Type="Self.Farm" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farms">
+              <PropertyRef Name="FarmId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="FarmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__UserId__693CA210">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bookings__VenueI__4D5F7D71">
+          <End Role="WeddingVenues" Type="Self.WeddingVenue" Multiplicity="0..1" />
+          <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeddingVenues">
+              <PropertyRef Name="VenueId" />
+            </Principal>
+            <Dependent Role="Bookings">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__BookingI__6C190EBB">
+          <End Role="Bookings" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bookings">
+              <PropertyRef Name="BookingId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClothDeta__Cloth__2EDAF651">
+          <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
+          <End Role="ClothDetails" Type="Self.ClothDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clothes">
+              <PropertyRef Name="ClothId" />
+            </Principal>
+            <Dependent Role="ClothDetails">
+              <PropertyRef Name="ClothId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FarmDetai__FarmI__2BFE89A6">
+          <End Role="Farms" Type="Self.Farm" Multiplicity="1" />
+          <End Role="FarmDetails" Type="Self.FarmDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farms">
+              <PropertyRef Name="FarmId" />
+            </Principal>
+            <Dependent Role="FarmDetails">
+              <PropertyRef Name="FarmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FoodDetai__FoodI__5812160E">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="FoodDetails" Type="Self.FoodDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="FoodDetails">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__CardD__40058253">
+          <End Role="InvitationCards" Type="Self.InvitationCard" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvitationCards">
+              <PropertyRef Name="InvitationCardsId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="CardDesignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__Order__40F9A68C">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invitatio__UserI__3F115E1A">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="InvitationCardForm" Type="Self.InvitationCardForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="InvitationCardForm">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__OrderI__6EF57B66">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photograp__Photo__6383C8BA">
+          <End Role="Photographers" Type="Self.Photographer" Multiplicity="1" />
+          <End Role="PhotographerDetails" Type="Self.PhotographerDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photographers">
+              <PropertyRef Name="PhotographerId" />
+            </Principal>
+            <Dependent Role="PhotographerDetails">
+              <PropertyRef Name="PhotographerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registere__Servi__73BA3083">
+          <End Role="Services" Type="Self.Service" Multiplicity="1" />
+          <End Role="RegisteredServices" Type="Self.RegisteredService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="RegisteredServices">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registere__UserI__72C60C4A">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="RegisteredServices" Type="Self.RegisteredService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RegisteredServices">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WeddingVe__Venue__151B244E">
+          <End Role="WeddingVenues" Type="Self.WeddingVenue" Multiplicity="1" />
+          <End Role="WeddingVenueDetails" Type="Self.WeddingVenueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeddingVenues">
+              <PropertyRef Name="VenueId" />
+            </Principal>
+            <Dependent Role="WeddingVenueDetails">
+              <PropertyRef Name="VenueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MasterPieceEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookingCloths" EntityType="Self.BookingCloth" />
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="ClothDetails" EntityType="Self.ClothDetail" />
+          <EntitySet Name="Clothes" EntityType="Self.Cloth" />
+          <EntitySet Name="FarmDetails" EntityType="Self.FarmDetail" />
+          <EntitySet Name="Farms" EntityType="Self.Farm" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="FoodDetails" EntityType="Self.FoodDetail" />
+          <EntitySet Name="InvitationCardForms" EntityType="Self.InvitationCardForm" />
+          <EntitySet Name="InvitationCards" EntityType="Self.InvitationCard" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PhotographerDetails" EntityType="Self.PhotographerDetail" />
+          <EntitySet Name="Photographers" EntityType="Self.Photographer" />
+          <EntitySet Name="RegisteredServices" EntityType="Self.RegisteredService" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="WeddingCarts" EntityType="Self.WeddingCart" />
+          <EntitySet Name="WeddingVenueDetails" EntityType="Self.WeddingVenueDetail" />
+          <EntitySet Name="WeddingVenues" EntityType="Self.WeddingVenue" />
+          <AssociationSet Name="FK__BookingCl__Cloth__5224328E" Association="Self.FK__BookingCl__Cloth__5224328E">
+            <End Role="Clothes" EntitySet="Clothes" />
+            <End Role="BookingCloths" EntitySet="BookingCloths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookingCl__UserI__51300E55" Association="Self.FK__BookingCl__UserI__51300E55">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookingCloths" EntitySet="BookingCloths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__FarmId__4E53A1AA" Association="Self.FK__Bookings__FarmId__4E53A1AA">
+            <End Role="Farms" EntitySet="Farms" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__UserId__693CA210" Association="Self.FK__Bookings__UserId__693CA210">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bookings__VenueI__4D5F7D71" Association="Self.FK__Bookings__VenueI__4D5F7D71">
+            <End Role="WeddingVenues" EntitySet="WeddingVenues" />
+            <End Role="Bookings" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__BookingI__6C190EBB" Association="Self.FK__Orders__BookingI__6C190EBB">
+            <End Role="Bookings" EntitySet="Bookings" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClothDeta__Cloth__2EDAF651" Association="Self.FK__ClothDeta__Cloth__2EDAF651">
+            <End Role="Clothes" EntitySet="Clothes" />
+            <End Role="ClothDetails" EntitySet="ClothDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FarmDetai__FarmI__2BFE89A6" Association="Self.FK__FarmDetai__FarmI__2BFE89A6">
+            <End Role="Farms" EntitySet="Farms" />
+            <End Role="FarmDetails" EntitySet="FarmDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FoodDetai__FoodI__5812160E" Association="Self.FK__FoodDetai__FoodI__5812160E">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="FoodDetails" EntitySet="FoodDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__CardD__40058253" Association="Self.FK__Invitatio__CardD__40058253">
+            <End Role="InvitationCards" EntitySet="InvitationCards" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__Order__40F9A68C" Association="Self.FK__Invitatio__Order__40F9A68C">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invitatio__UserI__3F115E1A" Association="Self.FK__Invitatio__UserI__3F115E1A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="InvitationCardForm" EntitySet="InvitationCardForms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__OrderI__6EF57B66" Association="Self.FK__Payments__OrderI__6EF57B66">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photograp__Photo__6383C8BA" Association="Self.FK__Photograp__Photo__6383C8BA">
+            <End Role="Photographers" EntitySet="Photographers" />
+            <End Role="PhotographerDetails" EntitySet="PhotographerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registere__Servi__73BA3083" Association="Self.FK__Registere__Servi__73BA3083">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="RegisteredServices" EntitySet="RegisteredServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registere__UserI__72C60C4A" Association="Self.FK__Registere__UserI__72C60C4A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RegisteredServices" EntitySet="RegisteredServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WeddingVe__Venue__151B244E" Association="Self.FK__WeddingVe__Venue__151B244E">
+            <End Role="WeddingVenues" EntitySet="WeddingVenues" />
+            <End Role="WeddingVenueDetails" EntitySet="WeddingVenueDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MasterPieceModelStoreContainer" CdmEntityContainer="MasterPieceEntities5">
+          <EntitySetMapping Name="BookingCloths">
+            <EntityTypeMapping TypeName="MasterPieceModel.BookingCloth">
+              <MappingFragment StoreEntitySet="BookingCloths">
+                <ScalarProperty Name="BookingClothId" ColumnName="BookingClothId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BookingDateFrom" ColumnName="BookingDateFrom" />
+                <ScalarProperty Name="BookingDateTo" ColumnName="BookingDateTo" />
+                <ScalarProperty Name="SpecialOrder" ColumnName="SpecialOrder" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ClothId" ColumnName="ClothId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="MasterPieceModel.Booking">
+              <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="SpecialOrder" ColumnName="SpecialOrder" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+                <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+                <ScalarProperty Name="BookingTimeFrom" ColumnName="BookingTimeFrom" />
+                <ScalarProperty Name="BookingTimeTo" ColumnName="BookingTimeTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothDetails">
+            <EntityTypeMapping TypeName="MasterPieceModel.ClothDetail">
+              <MappingFragment StoreEntitySet="ClothDetails">
+                <ScalarProperty Name="ClothDetailId" ColumnName="ClothDetailId" />
+                <ScalarProperty Name="ClothId" ColumnName="ClothId" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="ImageUrl4" ColumnName="ImageUrl4" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClothMaterial" ColumnName="ClothMaterial" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+                <ScalarProperty Name="PriceDetails" ColumnName="PriceDetails" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clothes">
+            <EntityTypeMapping TypeName="MasterPieceModel.Cloth">
+              <MappingFragment StoreEntitySet="Clothes">
+                <ScalarProperty Name="ClothId" ColumnName="ClothId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FarmDetails">
+            <EntityTypeMapping TypeName="MasterPieceModel.FarmDetail">
+              <MappingFragment StoreEntitySet="FarmDetails">
+                <ScalarProperty Name="FarmDetailId" ColumnName="FarmDetailId" />
+                <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="ImageUrl4" ColumnName="ImageUrl4" />
+                <ScalarProperty Name="ImageUrl5" ColumnName="ImageUrl5" />
+                <ScalarProperty Name="ImageUrl6" ColumnName="ImageUrl6" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceDetails" ColumnName="PriceDetails" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Farms">
+            <EntityTypeMapping TypeName="MasterPieceModel.Farm">
+              <MappingFragment StoreEntitySet="Farms">
+                <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="MasterPieceModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodDetails">
+            <EntityTypeMapping TypeName="MasterPieceModel.FoodDetail">
+              <MappingFragment StoreEntitySet="FoodDetails">
+                <ScalarProperty Name="FoodDetailId" ColumnName="FoodDetailId" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvitationCardForms">
+            <EntityTypeMapping TypeName="MasterPieceModel.InvitationCardForm">
+              <MappingFragment StoreEntitySet="InvitationCardForm">
+                <ScalarProperty Name="InvitationCardFormId" ColumnName="InvitationCardFormId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CardDesignId" ColumnName="CardDesignId" />
+                <ScalarProperty Name="GroomName" ColumnName="GroomName" />
+                <ScalarProperty Name="BrideName" ColumnName="BrideName" />
+                <ScalarProperty Name="WeddingDate" ColumnName="WeddingDate" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="AdditionalNotes" ColumnName="AdditionalNotes" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvitationCards">
+            <EntityTypeMapping TypeName="MasterPieceModel.InvitationCard">
+              <MappingFragment StoreEntitySet="InvitationCards">
+                <ScalarProperty Name="InvitationCardsId" ColumnName="InvitationCardsId" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MasterPieceModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="MasterPieceModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardOwnerName" ColumnName="CardOwnerName" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="ExpirationYear" ColumnName="ExpirationYear" />
+                <ScalarProperty Name="ExpirationMonth" ColumnName="ExpirationMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotographerDetails">
+            <EntityTypeMapping TypeName="MasterPieceModel.PhotographerDetail">
+              <MappingFragment StoreEntitySet="PhotographerDetails">
+                <ScalarProperty Name="PhotographerDetailId" ColumnName="PhotographerDetailId" />
+                <ScalarProperty Name="PhotographerId" ColumnName="PhotographerId" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="ImageUrl4" ColumnName="ImageUrl4" />
+                <ScalarProperty Name="ImageUrl5" ColumnName="ImageUrl5" />
+                <ScalarProperty Name="ImageUrl6" ColumnName="ImageUrl6" />
+                <ScalarProperty Name="PriceDetails" ColumnName="PriceDetails" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photographers">
+            <EntityTypeMapping TypeName="MasterPieceModel.Photographer">
+              <MappingFragment StoreEntitySet="Photographers">
+                <ScalarProperty Name="PhotographerId" ColumnName="PhotographerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredServices">
+            <EntityTypeMapping TypeName="MasterPieceModel.RegisteredService">
+              <MappingFragment StoreEntitySet="RegisteredServices">
+                <ScalarProperty Name="RegisteredServiceId" ColumnName="RegisteredServiceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="MasterPieceModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MasterPieceModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MasterPieceModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PersonalImage" ColumnName="PersonalImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeddingCarts">
+            <EntityTypeMapping TypeName="MasterPieceModel.WeddingCart">
+              <MappingFragment StoreEntitySet="WeddingCarts">
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="ImageUrl4" ColumnName="ImageUrl4" />
+                <ScalarProperty Name="ImageUrl5" ColumnName="ImageUrl5" />
+                <ScalarProperty Name="ImageUrl6" ColumnName="ImageUrl6" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeddingVenueDetails">
+            <EntityTypeMapping TypeName="MasterPieceModel.WeddingVenueDetail">
+              <MappingFragment StoreEntitySet="WeddingVenueDetails">
+                <ScalarProperty Name="VenueDetailId" ColumnName="VenueDetailId" />
+                <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageUrl1" ColumnName="ImageUrl1" />
+                <ScalarProperty Name="ImageUrl2" ColumnName="ImageUrl2" />
+                <ScalarProperty Name="ImageUrl3" ColumnName="ImageUrl3" />
+                <ScalarProperty Name="ImageUrl4" ColumnName="ImageUrl4" />
+                <ScalarProperty Name="ImageUrl5" ColumnName="ImageUrl5" />
+                <ScalarProperty Name="ImageUrl6" ColumnName="ImageUrl6" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceDetails" ColumnName="PriceDetails" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="CapacityNotes" ColumnName="CapacityNotes" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeddingVenues">
+            <EntityTypeMapping TypeName="MasterPieceModel.WeddingVenue">
+              <MappingFragment StoreEntitySet="WeddingVenues">
+                <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

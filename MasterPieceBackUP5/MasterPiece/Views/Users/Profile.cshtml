@@ -1,0 +1,62 @@
+﻿@model MasterPiece.Models.User
+
+@{
+    ViewBag.Title = "الصفحة الشخصية";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/profile.css" rel="stylesheet" />
+
+<main class="main profilePage">
+    <section id="EachService" class="EachService section">
+        <div class="profileContainer">
+            <h3 class="Eachsection-title">معلومات المستخدم</h3>
+            <hr>
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h2>@Model.FirstName @Model.LastName</h2>
+                    <p>@Model.Email</p>
+                    <span>رقم الهاتف: @Model.Phone</span>
+                    <span>العنوان: @Model.Address</span>
+                </div>
+                <img class="profile-img" src="~/Content/img/testimonials/testimonials-2.jpg" alt="Profile Picture">
+            </div>
+
+            <div class="user-info">
+                <div class="info-row">
+                    <label>الاسم الأول:</label>
+                    <span>@Model.FirstName</span>
+                </div>
+                <div class="info-row">
+                    <label>الاسم الثاني:</label>
+                    <span>@Model.LastName</span>
+                </div>
+                <div class="info-row">
+                    <label>البريد الإلكتروني:</label>
+                    <span>@Model.Email</span>
+                </div>
+                <div class="info-row">
+                    <label>رقم الهاتف:</label>
+                    <span>@Model.Phone</span>
+                </div>
+                <div class="info-row">
+                    <label>العنوان:</label>
+                    <span>@Model.Address</span>
+                </div>
+            </div>
+
+            <h3 class="Eachsection-title regServ">الخدمات المسجلة</h3>
+            <hr>
+            <ul class="service-list">
+                <li>حجز الصالات</li>
+                <li>حجز المزارع</li>
+                <li>الملابس</li>
+                <li>الطعام والشراب</li>
+                <li>التصوير</li>
+                <li>كروت الدعوة</li>
+            </ul>
+
+            <a href="@Url.Action("EditProfile", "Users", new {id=Model.UserId})" class="edit-profile-btn">تعديل الملف الشخصي</a>
+        </div>
+    </section>
+</main>
+

@@ -1,0 +1,65 @@
+ //------------------------
+ // Farms
+
+ public ActionResult CreateClothForm(int? id)
+ {
+
+     int userId = (int)Session["UserId"];
+
+     var user = db.Users.FirstOrDefault(u => u.UserId == userId);
+
+     if (user != null)
+     {
+         var model = new BookingCloth
+         {
+             Email = user.Email,
+             Phone = user.Phone,
+             UserId = userId,
+             ClothId = (int)id,
+             Cloth = db.Clothes.FirstOrDefault(v => v.ClothId == id),
+         };
+         return View(model);
+     }
+     return View(new BookingCloth());
+ }
+
+ // POST: Bookings/Create
+ // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+ // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+ [HttpPost]
+ [ValidateAntiForgeryToken]
+ public ActionResult CreateClothForm([Bind(Include = "BookingClothId,UserId,FullName,Email,Phone,BookingDateFrom,BookingDateTo,SpecialOrder,IsApproved,ClothId")] BookingCloth bookingcloth)
+ {
+     if (bookingcloth.BookingDateFrom == null)
+     {
+         // Add error message to the ModelState
+         ModelState.AddModelError("BookingDateFrom", "يرجى تحديد تاريخ الحجز");
+     }
+     // Check for existing bookings at the same farm, date, and overlapping time
+     var conflictingBooking = db.BookingCloths
+         .Where(b => b.ClothId == bookingcloth.ClothId
+                     && ((bookingcloth.BookingDateFrom >= b.BookingDateFrom && bookingcloth.BookingDateFrom < b.BookingDateTo)
+                         || (bookingcloth.BookingDateTo > b.BookingDateTo && bookingcloth.BookingDateTo <= b.BookingDateTo)
+                         || (bookingcloth.BookingDateFrom <= b.BookingDateFrom && bookingcloth.BookingDateTo >= b.BookingDateTo)))
+         .FirstOrDefault();
+
+     if (conflictingBooking != null)
+     {
+         ModelState.AddModelError("BookingTimeFrom", "هذا الوقت محجوز بالفعل. يرجى اختيار وقت آخر");
+         return View(bookingcloth);
+     }
+     if (ModelState.IsValid)
+     {
+         db.BookingCloths.Add(bookingcloth);
+         db.SaveChanges();
+
+         TempData["BookingId"] = bookingcloth.BookingClothId;
+         TempData["BookingSuccess"] = "تم حجزك بنجاح";
+         TempData.Keep("BookingSuccess");
+         return RedirectToAction("CreateClothForm", "Bookings", new { id = bookingcloth.ClothId });
+
+     }
+
+     ViewBag.UserId = new SelectList(db.Users, "UserId", "FirstName", bookingcloth.UserId);
+     return View(bookingcloth);
+ }

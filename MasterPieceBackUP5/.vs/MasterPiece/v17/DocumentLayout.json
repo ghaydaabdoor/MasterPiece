@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\views\\photographerdetails\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\photographerdetails\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\views\\photographers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\photographers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\models\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\models\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\masterpiece\\views\\weddingvenues\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\weddingvenues\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\PhotographerDetails\\Index.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\PhotographerDetails\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\PhotographerDetails\\Index.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\PhotographerDetails\\Index.cshtml",
+              "ViewState": "AQIAAIABAAAAAAAAAAASwIgBAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-03T20:44:52.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Photographers\\Index.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\Photographers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\Photographers\\Index.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\Photographers\\Index.cshtml",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAiwH0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-03T20:27:29.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Model1.Context.tt",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\Model1.Context.tt",
+              "RelativeDocumentMoniker": "MasterPiece\\Models\\Model1.Context.tt",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\Model1.Context.tt",
+              "RelativeToolTip": "MasterPiece\\Models\\Model1.Context.tt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-03T19:52:51.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "MasterPiece\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "MasterPiece\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-10-03T19:52:49.433Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\WeddingVenues\\Index.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\WeddingVenues\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\WeddingVenues\\Index.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\WeddingVenues\\Index.cshtml",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAAAFkAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-28T11:41:53.965Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

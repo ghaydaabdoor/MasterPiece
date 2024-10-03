@@ -1,0 +1,582 @@
+﻿@{
+    ViewBag.Title = "الرئيسية";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .icon-box-link h3{
+        color:black;
+    }
+    .testimonials:before {
+        background: url("../../Content/img/ghj.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .testimonials span, .testimonials h3, .testimonials h4{
+        color: black;
+    }
+</style>
+<main class="main">
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+        <img src="~/Content/img/final-bg.jpg" alt="" data-aos="fade-in">
+        <div class="container">
+            <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-xl-6 col-lg-8 welcome">
+                    <h2>فرح</h2>
+                    <p>
+                        لحجز القاعات وخدمات الزفاف في إربد بكل سهولة، كل ما تحتاجونه لهذا اليوم المميز في مكان واحد
+                    </p>
+                </div>
+            </div>
+            <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="@Url.Action("Index", "InvitationCards")" class="icon-box-link">
+                        <div class="icon-box">
+                            <i class="bi bi-postcard-heart"></i>
+                            <h3>كروت الدعوة</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="@Url.Action("Index", "Foods")" class="icon-box-link">
+                        <div class="icon-box">
+                            <i class="bi bi-cup-straw"></i>
+                            <h3>الطعام والشراب</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <a href="@Url.Action("Index", "Clothes")" class="icon-box-link">
+                        <div class="icon-box">
+                            <i class="bi bi-person-standing-dress"></i>
+                            <h3>الملابس</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <a href="@Url.Action("Index", "Photographers")" class="icon-box-link">
+                        <div class="icon-box">
+                            <i class="bi bi-camera"></i>
+                            <h3>التصوير</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
+                    <a href="@Url.Action("Index", "WeddingVenues")" class="icon-box-link">
+                        <div class="icon-box">
+                            <i class="bi bi-calendar3"></i>
+                            <h3>الحجز</h3>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div>
+                <a class="btn-getstarted" href="venues.html">احجز الآن</a>
+            </div>
+        </div>
+    </section>
+    <!-- /Hero Section -->
+    <!-- ======= About Section ======= -->
+    <section id="About" class="About section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <p class="section-title">من نحن؟</p>
+            <p class="AboutPar">
+                مرحبًا بكم في فرح، موقعكم الأمثل لحجز صالات الأفراح والمزارع في إربد.
+                نحن نفهم أن يوم الزفاف هو واحد من أهم الأيام في حياتكم، لذلك نعمل جاهدين لتوفير جميع احتياجاتكم في
+                مكان واحد، بكل سهولة ويسر
+            </p>
+
+
+            <div class="row" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-4">
+                    <div class="icon-box">
+                        <i class="bi bi-laptop"></i>
+                        <h4><a href="#">التزامنا</a></h4>
+                        <p>
+                            نحن ملتزمون بتقديم أفضل الخدمات لضمان رضاكم وسعادتكم. فريقنا يعمل بكل تفانٍ لتلبية
+                            احتياجاتكم وتحقيق أحلامكم في يومكم المميز.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="bi bi-bar-chart"></i>
+                        <h4><a href="#">خدماتنا</a></h4>
+                        <p>
+                            نوفر مجموعة متنوعة من الخدمات التي تضمن لكم تجربة مثالية، من حجز القاعات والمزارع، إلى
+                            خدمات الطعام والشراب الفاخرة، والتصوير الاحترافي، بالإضافة إلى تقديم الملابس الأنيقة
+                            للعروس والعريس، وخيارات متعددة من بطاقات الدعوة.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="bi bi-brightness-high"></i>
+                        <h4><a href="#">رؤيتنا</a></h4>
+                        <p>
+                            نحن نسعى لأن نكون الوجهة الأولى لمن يبحثون عن أماكن فاخرة وأنيقة لإقامة حفلات الزفاف
+                            والمناسبات الخاصة في إربد (صالات ومزارع).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="AboutPar">
+                في فرح، نقدم لكم تجربة متكاملة وشاملة لزفافكم. نحن نعتني بكل التفاصيل الصغيرة
+                والكبيرة، من لحظة حجز القاعة وحتى نهاية يومكم المميز.
+                إن خدماتنا المتنوعة والمتكاملة تضمن لكم راحة البال والتركيز على الاستمتاع بلحظاتكم الخاصة
+                كل فريقنا ملتزم بتحقيق رؤيتكم وتحويل أحلامكم إلى حقيقة.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p class="tit">خدماتنا</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-5">
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="@Url.Action("Index","Foods")">
+                        <div class="service-item">
+                            <div class="img">
+                                <img src="~/Content/img/services-1.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-cup-straw"></i>
+                                </div>
+                                <a href="food.html" class="stretched-link">
+                                    <h3>خدمات الطعام والشراب</h3>
+                                </a>
+                                <p>استمتع بأشهى المقبلات والحلويات الخفيفة لضيوفك في حفل الزفاف</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="@Url.Action("Index","Farms")">
+                        <div class="service-item">
+                            <div class="img">
+                                <img src="~/Content/img/services-3.jpeg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-tree"></i>
+                                </div>
+                                <a href="farms.html" class="stretched-link">
+                                    <h3>حجز المزارع</h3>
+                                </a>
+                                <p>استمتع بحفل زفافك في أجواء طبيعية وجميلة مع خدمات حجز المزارع.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
+                    <a href="@Url.Action("Index","WeddingVenues")">
+                        <div class="service-item">
+                            <div class="img">
+                                <img src="~/Content/img/services-4.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-house"></i>
+                                </div>
+                                <a href="venues.html" class="stretched-link">
+                                    <h3>حجز الصالات</h3>
+                                </a>
+                                <p>اختر من بين مجموعة واسعة من الصالات الفاخرة لإقامة حفل زفافك المميز</p>
+                                <a href="venues.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="service-item">
+                        <div class="img">
+                            <img src="~/Content/img/services-6.jfif" class="img-fluid" alt="">
+                        </div>
+                        <div class="details position-relative">
+                            <div class="icon">
+                                <i class="bi bi-postcard-heart"></i>
+                            </div>
+                            <a href="invitationCards.html" class="stretched-link">
+                                <h3>تصميم كرت الدعوة</h3>
+                            </a>
+                            <p>اختر تصميم بطاقة الدعوة المثالية من مجموعتنا الواسعة.</p>
+                            <a href="invitationCards.html" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
+                    <a href="@Url.Action("Index","Photographers")">
+                        <div class="service-item">
+                            <div class="img">
+                                <img src="~/Content/img/services-5.jfif" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-camera"></i>
+                                </div>
+                                <a href="photographers.html" class="stretched-link">
+                                    <h3>خدمات التصوير</h3>
+                                </a>
+                                <p>وثّق لحظاتك السعيدة بأعلى جودة من خلال فريق تصوير محترف</p>
+                                <a href="photographers.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Service Item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="@Url.Action("Index","Clothes")">
+                        <div class="service-item">
+                            <div class="img">
+                                <img src="~/Content/img/services-2.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-person-standing-dress"></i>
+                                </div>
+                                <a href="clothes.html" class="stretched-link">
+                                    <h3>خدمات الملابس</h3>
+                                </a>
+                                <p>اختر من تشكيلة واسعة من الفساتين والبدلات لتتألق في يومك الخاص</p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Service Item -->
+
+            </div>
+
+        </div>
+
+    </section><!-- /Services Section -->
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section dark-background">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="swiper init-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                      "loop": true,
+                      "speed": 600,
+                      "autoplay": {
+                        "delay": 5000
+                      },
+                      "slidesPerView": "auto",
+                      "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                      }
+                    }
+                </script>
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="~/Content/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <h3>Lara Ahmad</h3>
+                            <h4>مستخدم</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>
+                                    "لقد كانت تجربتنا مع فرح لا تُنسى. حجزنا مزرعة للاحتفال بزفافنا وكانت الخدمة
+                                    ممتازة. كان كل شيء منظمًا بعناية، والطعام كان لذيذًا والتصوير احترافي جدًا. نحن
+                                    ممتنون جدًا لفريق فرح لجعل يومنا مميزًا!"
+                                </span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="~/Content/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                            <h3>Mona Rashed</h3>
+                            <h4>مستخدم</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>
+                                    "أردنا حفل زفاف بسيط وأنيق، وقد قدم لنا موقع فرح كل ما نحتاجه. حجزنا بدلة
+                                    للعريس وفستان للعروس بسهولة، وكانت القاعة مزينة بشكل جميل. حتى بطاقات الدعوة
+                                    كانت أنيقة وفريدة من نوعها. شكراً لفريق فرح على كل شيء!"
+                                </span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="~/Content/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                            <h3>Sara Khalil</h3>
+                            <h4>مستخدم</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>
+                                    استخدمت موقعكم لحجز قاعة لحفل زفافي وأنا ممتن جدًا للتجربة الرائعة. كانت عملية
+                                    الحجز سلسة للغاية ومليئة بالخيارات المتنوعة للمواقع والخدمات.
+                                    لقد وفرتم لي ولعائلتي تجربة لا تُنسى بفضل تنظيمكم الدقيق والتعامل المحترف مع كل
+                                    التفاصيل.
+                                    شكرًا جزيلاً لكم وسأوصي بشدة بهذا الموقع لأي شخص يبحث عن مكان مثالي لاحتفالاتهم
+                                    في إربد.
+                                </span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="~/Content/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                            <h3>Reem Ali</h3>
+                            <h4>مستخدم</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>
+                                    "كانت تجربتنا مع فرح رائعة. حجزنا صالة زفاف ولم نكن بحاجة للقلق بشأن أي شيء
+                                    آخر. كل شيء كان مرتبًا بعناية، من الطعام والشراب إلى التصوير وتصميم بطاقات
+                                    الدعوة. فريق فرح محترف ويعرف كيف يجعل كل شيء مثاليًا."
+                                </span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="~/Content/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                            <h3>Farah Mohammad</h3>
+                            <h4>مستخدم</h4>
+                            <div class="stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>
+                                    "لم نكن نتوقع أن نجد كل هذه الخدمات في مكان واحد، لكن موقع فرح حقق لنا كل ما
+                                    كنا نتمناه وأكثر. حجزنا مزرعة جميلة للاحتفال بزفافنا، وكانت التجربة مذهلة.
+                                    الملابس، الطعام، التصوير، كل شيء كان رائعًا. شكراً لفريق فرح على يوم لا يُنسى."
+                                </span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+
+    </section><!-- /Testimonials Section -->
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+        <div class="container">
+
+            <div class="section-title" data-aos="zoom-in">
+                <p class="tit">الأسئلة الأكثر تكراراً</p>
+            </div>
+
+            <div class="faq-list">
+                <ul>
+                    <li data-aos="fade-up">
+                        <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">
+                            كيف يمكنني حجز
+                            قاعة أو مزرعة؟<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                            <p>
+                                يمكنك حجز القاعة أو المزرعة التي تفضلها من خلال تصفح القاعات والمزارع المتاحة على
+                                الموقع، ثم النقر على زر "احجز الآن" الموجود في صفحة التفاصيل الخاصة بكل قاعة أو
+                                مزرعة.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">
+                            ما هي خيارات
+                            الدفع المتاحة؟
+
+                            <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+                            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    تتوفر خيارات الدفع عبر الإنترنت فقط باستخدام الفيزا أو بيبال. يمكنك اختيار طريقة
+                                    الدفع التي تفضلها أثناء عملية الحجز وإدخال المعلومات المطلوبة لإتمام الدفع بشكل
+                                    آمن وسهل.
+                                </p>
+                            </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">
+                            هل يمكنني زيارة
+                            القاعة قبل الحجز؟
+
+                            <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+                            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    نعم، يمكنك زيارة القاعة قبل الحجز بالتنسيق مع فريق الدعم لدينا لتحديد موعد مناسب
+                                    للزيارة. نحن نرحب بك للقيام بجولة في القاعة أو المزرعة للتأكد من أنها تلبي
+                                    احتياجاتك وتوقعاتك قبل إجراء الحجز.
+                                </p>
+                            </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="300">
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">
+                            هل يمكنني تعديل
+                            أو إلغاء حجز؟
+
+                            <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+                            <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    نعم، يمكنك تعديل أو إلغاء الحجز عن طريق التواصل مع فريق الدعم لدينا عبر البريد
+                                    الإلكتروني أو الهاتف. يرجى ملاحظة أن شروط وأحكام الإلغاء والتعديل قد تختلف بناءً
+                                    على توقيت الحجز والخدمات المطلوبة.
+                                </p>
+                            </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="400">
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">
+                            ما هي خدمات
+                            الملابس التي تقدمونها؟
+
+                            <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+                            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    نحن نقدم خدمات حجز فستان الزفاف وبدلة العريس بأفضل التصاميم والأذواق. يمكنك
+                                    استعراض الخيارات المتاحة على الموقع واختيار ما يناسبك. نحن نضمن توفير ملابس ذات
+                                    جودة عالية وتصاميم أنيقة لتلبية جميع احتياجاتك في يومك الخاص.
+                                </p>
+                            </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </section><!-- End F.A.Q Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <p class="tit">تواصل معنا</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+                <iframe style="border:0; width: 100%; height: 270px;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4539.957990562137!2d35.88129806118648!3d32.52605689671306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c77f0b530590d%3A0x3373e4be4782f15c!2z2LPZhdin2LHYqiDYqNin2Yo!5e0!3m2!1sar!2sjo!4v1722029222907!5m2!1sar!2sjo"
+                        frameborder="0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div><!-- End Google Maps -->
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                          data-aos-delay="200">
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="الاسم" required="">
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="البريد الالكتروني" required="">
+                            </div>
+
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="subject" placeholder="العنوان"
+                                       required="">
+                            </div>
+
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="message" rows="6" placeholder="نص الرسالة"
+                                          required=""></textarea>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                <button type="submit">إرسال</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div><!-- End Contact Form -->
+
+                <div class="col-lg-4">
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>العنوان</h3>
+                            <p>اربد، شارع أبو راشد مجمع الرشدان الطابق الثالث</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-telephone flex-shrink-0"></i>
+                        <div>
+                            <h3>اتصل بنا</h3>
+                            <p>0787580676</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h3>بريدنا الالكتروني</h3>
+                            <p>FarahOffice96@gmail.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </section><!-- /Contact Section -->
+
+</main>

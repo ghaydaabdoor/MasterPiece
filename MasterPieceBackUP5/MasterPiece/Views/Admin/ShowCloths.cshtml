@@ -1,0 +1,288 @@
+﻿@model IEnumerable<MasterPiece.Models.ClothViewModel>
+
+
+@{
+    ViewBag.Title = "ShowFarms";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    th, td, textarea {
+        text-align: right;
+    }
+
+    h5, h4 {
+        width: 100%;
+        text-align: right;
+    }
+
+    .small-image {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    .swal2-actions {
+        direction: rtl;
+    }
+
+    .swal2-confirm {
+        margin-left: 5px;
+    }
+
+    .swal2-cancel {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض الملابس</h2>
+            <a class="btn btn-primary" href="@Url.Action("CreateCloth","Admin")">إضافة ملابس</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الصورة</th>
+                        <th scope="col">الاسم</th>
+                        <th scope="col">اللون</th>
+                        <th scope="col">السعر</th>
+                        <th scope="col">الصنف</th>
+                        <th scope="col">التقييم</th>
+                        <th scope="col">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.cloth.ClothId</td>
+                            <td><img src="~/Content/img/@item.cloth.ImageUrl" alt="@item.cloth.Name" class="img-thumbnail" style="width:100px;"></td>
+                            <td>@item.cloth.Name</td>
+                            <td>@item.cloth.Color</td>
+                            <td>@item.clothDetail.PriceDetails</td>
+                            <td>@item.cloth.Category</td>
+                            <td>@item.cloth.Rate</td>
+                            <td>
+                                <!-- Action Buttons -->
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Index", "ClothDetails", new { id = @item.cloth.ClothId })">عرض</a>
+                                <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#editModal-@item.cloth.ClothId">تعديل</a>
+                                <form id="deleteForm-@item.cloth.ClothId" action="@Url.Action("DeleteCloth", "Admin", new { id = @item.cloth.ClothId })" method="post" style="display:inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.cloth.ClothId)">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- Modal for Edit -->
+                        <div class="modal fade" id="editModal-@item.cloth.ClothId" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-@item.cloth.ClothId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <!-- Added 'modal-lg' for larger modal -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">تعديل صنف الملابس</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form for editing farm -->
+                                        @using (Html.BeginForm("EditCloth", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" id="ClothId" name="cloth.ClothId" value="@item.cloth.ClothId" />
+                                            <input type="hidden" id="clothDetailId" name="clothDetail.ClothDetailId" value="@item.clothDetail.ClothDetailId" />
+
+
+                                            <div class="container-fluid">
+                                                <!-- Farm Details Section -->
+                                                <h4 class="mb-3">تفاصيل صنف الملابس</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Price -->
+                                                        <div class="form-group">
+                                                            <label for="ClothPrice" class="control-label">السعر</label>
+                                                            <input type="text" id="ClothPrice" name="clothDetail.PriceDetails" class="form-control" placeholder="السعر" value="@item.clothDetail.PriceDetails">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Farm Name -->
+                                                        <div class="form-group">
+                                                            <label for="FarmName" class="control-label">الاسم</label>
+                                                            <input type="text" id="ClothName" name="cloth.Name" class="form-control" placeholder="الاسم" value="@item.cloth.Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Rate -->
+                                                        <div class="form-group">
+                                                            <label for="ClothRate" class="control-label">التقييم</label>
+                                                            <input type="number" id="ClothRate" name="cloth.Rate" class="form-control" placeholder="التقييم" min="1" max="5" value="@item.cloth.Rate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Price -->
+                                                        <div class="form-group">
+                                                            <label for="ClothColor" class="control-label">اللون</label>
+                                                            <input type="text" id="ClothColor" name="cloth.Color" class="form-control" placeholder="اللون" step="0.01" value="@item.cloth.Color">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Category -->
+                                                        <div class="form-group">
+                                                            <label for="ClothCategory" class="control-label">الصنف</label>
+                                                            <input type="text" id="ClothCategory" name="cloth.Category" class="form-control" placeholder="الصنف" value="@item.cloth.Category">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Main Image -->
+                                                        <div class="form-group">
+                                                            <label for="ClothImageUrl" class="control-label">الصورة الرئيسية</label>
+                                                            <input type="text" id="ClothImageUrl" name="cloth.ImageUrl" class="form-control" placeholder="الصورة الرئيسية" value="@item.cloth.ImageUrl">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                               
+
+                                                <!-- Farm Additional Details -->
+                                                @if (item.clothDetail != null)
+                                                {
+                                                    <hr />
+                                                    <h4 class="mb-3">تفاصيل إضافية</h4>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label">الصور</label>
+                                                        <div class="row">
+                                                            <!-- Editable URLs for images -->
+                                                            <div class="col-md-4">
+                                                                <img src="@item.clothDetail.ImageUrl1" class="img-thumbnail small-image" data-image="1" onclick="showLargeImage('@item.clothDetail.ImageUrl1')" />
+                                                                <input type="text" class="form-control" value="@item.clothDetail.ImageUrl1" data-image="1" name="clothDetail.ImageUrl1" oninput="updateImage(1, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.clothDetail.ImageUrl2" class="img-thumbnail small-image" data-image="2" onclick="showLargeImage('@item.clothDetail.ImageUrl2')" />
+                                                                <input type="text" class="form-control" value="@item.clothDetail.ImageUrl2" data-image="2" name="clothDetail.ImageUrl2" oninput="updateImage(2, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.clothDetail.ImageUrl3" class="img-thumbnail small-image" data-image="3" onclick="showLargeImage('@item.clothDetail.ImageUrl3')" />
+                                                                <input type="text" class="form-control" value="@item.clothDetail.ImageUrl3" data-image="3" name="clothDetail.ImageUrl3" oninput="updateImage(3, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.clothDetail.ImageUrl4" class="img-thumbnail small-image" data-image="4" onclick="showLargeImage('@item.clothDetail.ImageUrl4')" />
+                                                                <input type="text" class="form-control" value="@item.clothDetail.ImageUrl4" data-image="4" name="clothDetail.ImageUrl4" oninput="updateImage(4, this)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Description -->
+                                                    <div class="form-group">
+                                                        <label for="ClothDescription" class="control-label">الوصف</label>
+                                                        <textarea id="ClothDescription" name="clothDetail.Description" class="form-control" rows="4" placeholder="الوصف">@item.clothDetail.Description</textarea>
+                                                    </div>
+
+                                                    <!-- Price -->
+                                                    <div class="form-group">
+                                                        <label for="ClothMaterial" class="control-label">القماش</label>
+                                                        <textarea id="ClothMaterial" name="clothDetail.ClothMaterial" class="form-control" rows="2" placeholder="القماش">@item.clothDetail.ClothMaterial</textarea>
+                                                    </div>
+
+                                                    <!-- Features Notes -->
+                                                    <div class="form-group">
+                                                        <label for="FarmFeatures" class="control-label">الميزات</label>
+                                                        <textarea id="FarmFeatures" name="clothDetail.Features" class="form-control" rows="2" placeholder="الميزات">@item.clothDetail.Features</textarea>
+                                                    </div>
+
+                                                }
+                                                else
+                                                {
+                                                    <p>لا توجد تفاصيل مضافة !</p>
+                                                }
+
+                                                <!-- Submit Button -->
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-success btn-lg">حفظ التغييرات</button>
+                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">إلغاء</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal to Display Large Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="largeImage" src="" alt="Large Image" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function confirmDelete(farmId) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'إلغاء',
+            confirmButtonText: 'تأكيد',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if confirmed
+                document.getElementById('deleteForm-' + farmId).submit();
+            }
+        });
+    }
+
+    function showLargeImage(imageUrl) {
+        // Set the source of the large image in the modal
+        document.getElementById("largeImage").src = imageUrl;
+
+        // Show the modal
+        $('#imageModal').modal('show');
+    }
+
+    function updateImage(imageIndex, inputElement) {
+        // Get the corresponding image element using the data attribute
+        var imageElement = document.querySelector(`img[data-image="${imageIndex}"]`);
+        // Update the image src with the new URL
+        if (imageElement) {
+            imageElement.src = inputElement.value; // Update the image source
+        } else {
+            console.error(`Image with data-image="${imageIndex}" not found.`);
+        }
+    }
+
+</script>
+
