@@ -1,0 +1,102 @@
+﻿@model IEnumerable<MasterPiece.Models.User>
+
+@{
+    ViewBag.Title = "عرض المستخدمين";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    th, td, textarea {
+        text-align: right;
+    }
+
+    h5, h4 {
+        width: 100%;
+        text-align: right;
+    }
+
+    .small-image {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    .swal2-actions {
+        direction: rtl;
+    }
+
+    .swal2-confirm {
+        margin-left: 5px;
+    }
+
+    .swal2-cancel {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض المستخدمين</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الاسم الأول</th>
+                        <th scope="col">اسم العائلة</th>
+                        <th scope="col">البريد الالكتروني</th>
+                        <th scope="col">رقم الهاتف</th>
+                        <th scope="col">العنوان</th>
+                        <th scope="col">الاجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UserId</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Address</td>
+                            <td>
+                                <!-- Action Buttons -->
+                                <form id="deleteForm-@item.UserId" action="@Url.Action("DeleteUser", "Admin", new { id = @item.UserId })" method="post" style="display:inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.UserId)">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(foodId) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'إلغاء',
+            confirmButtonText: 'تأكيد',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if confirmed
+                document.getElementById('deleteForm-' + foodId).submit();
+            }
+        });
+    }
+</script>

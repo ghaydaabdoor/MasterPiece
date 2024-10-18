@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\controllers\\invitationcardformscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\controllers\\invitationcardformscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\views\\invitationcardforms\\createinvitationcardformview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\views\\invitationcardforms\\createinvitationcardformview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|c:\\users\\orange\\desktop\\master piece\\masterpiecemvc\\masterpiece\\masterpiece\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042FC044-1CC8-4F06-AB1F-31A8FFC7D342}|MasterPiece\\MasterPiece.csproj|solutionrelative:masterpiece\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Controllers\\BookingsController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "MasterPiece\\Controllers\\BookingsController.cs",
+              "ViewState": "AQIAADUBAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T18:04:52.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateInvitationCardFormView.cshtml",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\InvitationCardForms\\CreateInvitationCardFormView.cshtml",
+              "RelativeDocumentMoniker": "MasterPiece\\Views\\InvitationCardForms\\CreateInvitationCardFormView.cshtml",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Views\\InvitationCardForms\\CreateInvitationCardFormView.cshtml",
+              "RelativeToolTip": "MasterPiece\\Views\\InvitationCardForms\\CreateInvitationCardFormView.cshtml",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAAAIAAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-18T17:14:00.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "MasterPiece\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAswEAAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T17:07:58.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InvitationCardFormsController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\InvitationCardFormsController.cs",
+              "RelativeDocumentMoniker": "MasterPiece\\Controllers\\InvitationCardFormsController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\Master piece\\MasterPieceMVC\\MasterPiece\\MasterPiece\\Controllers\\InvitationCardFormsController.cs",
+              "RelativeToolTip": "MasterPiece\\Controllers\\InvitationCardFormsController.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAmwEcAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T16:18:24.78Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

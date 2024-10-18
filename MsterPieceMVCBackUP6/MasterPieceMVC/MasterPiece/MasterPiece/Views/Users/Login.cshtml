@@ -1,0 +1,83 @@
+﻿@model MasterPiece.Models.User
+
+@{
+    ViewBag.Title = "تسجيل دخول";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .form-control {
+        border: 1px solid rgb(205, 200, 200);
+        padding-right: 1.5rem;
+    }
+
+    #picReg {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        height: 550px;
+        width: 100%;
+    }
+
+    .reg {
+        margin-left: 4px;
+        width: 89%;
+    }
+</style>
+<main class="main">
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-end h-100">
+                <div class="col-lg-8 col-xl-8">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="formBox">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-lg-6 col-xl-6 d-flex align-items-center order-2 order-lg-1">
+                                    <img src="~/Content/img/pic33.jpg" class="img-fluid" id="picReg" alt="image">
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-6 order-1 order-lg-2">
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">تسجيل الدخول</p>
+
+                                    @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { ReturnUrl = Request.QueryString["returnUrl"] }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.Hidden("returnUrl", Request.QueryString["returnUrl"])
+
+                                <div class="mx-1 mx-md-4" dir="rtl">
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg ms-3 fa-fw"></i>
+                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "البريد الإلكتروني" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg ms-3 fa-fw"></i>
+                                        <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "كلمة المرور" })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4 w-100">
+                                        <input type="submit" class="btn-getstarted reg" value="تسجيل دخول">
+                                    </div>
+
+                                </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+

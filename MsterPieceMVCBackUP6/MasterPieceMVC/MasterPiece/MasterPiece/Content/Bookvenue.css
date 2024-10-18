@@ -1,0 +1,104 @@
+﻿<style >
+/* Input fields styling */
+input {
+    text-align: right;
+    border: 1px solid #BA68C8; /* Light border for inputs */
+    border-radius: 5px; /* Rounded corners */
+    padding: 12px; /* Increased padding for better touch targets */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus */
+    font-size: 14px; /* Placeholder font size */
+}
+
+input::placeholder {
+    color: #999; /* Placeholder color */
+    font-size: 12px; /* Smaller placeholder font size */
+}
+
+input:focus {
+    border-color: #682773; /* Darker color on focus */
+    box-shadow: 0 0 5px rgba(186, 104, 200, 0.5); /* Subtle shadow effect */
+}
+
+/* Label styling */
+label {
+    display: block;
+    text-align: right;
+    font-size: 16px; /* Larger font size for labels */
+    margin-bottom: 5px; /* Increased space between label and input */
+}
+
+.profilePage .col-md-12 {
+    margin-bottom: 10px;
+}
+
+.profilePage .font-weight-bold {
+    font-size: 28px;
+}
+
+.ProfilePass {
+    font-size: 25px;
+}
+
+#sett {
+    margin-left: auto;
+}
+
+.section {
+    padding-bottom: 0;
+}
+/* Animation for loading elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start completely transparent */
+        transform: translateY(20px); /* Start slightly lower */
+    }
+
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* Padding for smaller screens */
+    }
+
+    .col-md-3, .col-md-5, .col-md-4 {
+        flex: 0 0 100%; /* Stack columns on small screens */
+        max-width: 100%;
+    }
+}
+/* General container styling */
+.BookFormcontainer {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 40%;
+    margin: 30px auto;
+}
+
+/* Input fields styling */
+input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.sendReq {
+    display: block;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* Padding for smaller screens */
+    }
+}
+
+</style >

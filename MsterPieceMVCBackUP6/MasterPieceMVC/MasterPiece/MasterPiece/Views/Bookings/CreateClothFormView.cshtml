@@ -1,0 +1,209 @@
+﻿@model MasterPiece.Models.BookingCloth
+@{
+    ViewBag.Title = "نموذج حجز ملابس";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/Bookvenue.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<style>
+    .text-danger {
+        display: block;
+        text-align: right;
+    }
+    /* Style for the readonly field */
+    input[readonly] {
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+        /* Remove any hover effects for the readonly fields */
+        input[readonly]:hover {
+            background-color: #e9ecef;
+        }
+
+    /* Disabled button styling */
+    .disabledClass {
+        background-color: #ccc;
+        color: #777;
+        border: none;
+        cursor: not-allowed;
+    }
+
+    button.disabledClass:hover {
+        background-color: #ccc; /* No change on hover */
+    }
+
+    #errorMessage {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+        display: none; /* Hidden by default */
+        text-align: right;
+    }
+</style>
+
+<main class="main">
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+        <div class="BookFormcontainer">
+            <div class="form-container">
+                <h2 class="Eachsection-title">نموذج حجز الملابس</h2>
+
+                <form id="paymentForm" action="@Url.Action("ProcessPaymentCloth", "Bookings")" method="post" style="display:none;">
+                    <input type="hidden" name="bookingClothId" value="@TempData["BookingIdd"]" /> <!-- Use TempData for Booking ID -->
+                    <input type="hidden" name="clothId" value="@Model.ClothId" /> <!-- Hidden field for Venue ID -->
+                    <input type="hidden" name="value" value="@(decimal.Parse(Model.Cloth.ClothDetails.FirstOrDefault(d => d.ClothId == Model.ClothId)?.PriceDetails ?? "0").ToString("F2"))" />
+                </form>
+
+                @using (Html.BeginForm("CreateClothForm", "Bookings", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ClothId)
+                    @Html.HiddenFor(model => model.UserId)
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل اسمك الكامل" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل بريدك الإلكتروني", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل رقم هاتفك", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Date Start-->
+                    <div class="form-group">
+                        <label for="eventDate">تاريخ بداية الحجز</label>
+                        @Html.EditorFor(model => model.BookingDateFrom, new { htmlAttributes = new { @class = "form-control", type = "date", id = "BookingDate" } })
+                        @Html.ValidationMessageFor(model => model.BookingDateFrom, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Booking Date End-->
+                    <div class="form-group">
+                        <label for="eventDate">تاريخ نهاية الحجز</label>
+                        @Html.EditorFor(model => model.BookingDateTo, new { htmlAttributes = new { @class = "form-control", type = "date", @readonly = "readonly", id = "BookingDateTo" } })
+                        @Html.ValidationMessageFor(model => model.BookingDateTo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="form-group">
+                        <label for="specialRequests">طلبات خاصة</label>
+                        @Html.TextAreaFor(model => model.SpecialOrder, new { @class = "form-control", rows = "3", placeholder = "اذكر أي طلبات خاصة" })
+                        @Html.ValidationMessageFor(model => model.SpecialOrder, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn-getstarted sendReq">إرسال الطلب</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+   @if (TempData["BookingSuccess"] != null)
+{
+    <text>
+    Swal.fire({
+        icon: 'success',
+        title: 'نجاح',
+        text: '@TempData["BookingSuccess"]',
+        showCancelButton: true,
+        confirmButtonText: 'الاستمرار للدفع',
+        cancelButtonText: 'إلغاء',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Submit the form to process payment
+            document.getElementById("paymentForm").submit();
+        } else {
+            // Redirect back to the farms page or any other desired page
+            window.location.href = '@Url.Action("CreateClothForm", "Bookings")';
+        }
+    });
+    </text>
+}
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var submitButton = document.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.classList.add("disabledClass");
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        var dd = String(tomorrow.getDate()).padStart(2, '0');
+        var mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        var yyyy = tomorrow.getFullYear();
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+
+        var dateInput = document.getElementById("BookingDate");
+        dateInput.setAttribute("min", formattedDate);
+
+        var bookingDateToInput = document.getElementById("BookingDateTo"); // Make sure to have an id for this input
+        var dateValid = false;
+
+        dateInput.addEventListener("change", function () {
+            dateValid = dateInput.value !== "";
+            if (dateValid) {
+                var startDate = new Date(dateInput.value);
+                var endDate = new Date(startDate);
+                endDate.setDate(startDate.getDate() + 14); // Add 14 days
+
+                var endDateFormatted = endDate.toISOString().split('T')[0]; // Format to YYYY-MM-DD
+                bookingDateToInput.value = endDateFormatted; // Set the value of BookingDateTo
+            }
+            checkFormValidity();
+        });
+
+        function checkFormValidity() {
+            if (dateValid) {
+                submitButton.disabled = false;
+                submitButton.classList.remove("disabledClass");
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.add("disabledClass");
+            }
+        }
+    });
+
+</script>
+
+@if (ViewBag.HasBookedVenueOrFarm == false)
+{
+    <script>
+        Swal.fire({
+            title: 'تنبيه',
+            text: 'خدمة تأجير الملابس متاحة فقط بعد إتمام حجز صالة أو مزرعة',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'حسناً'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to the previous page
+            window.location.href = '@Url.Action("Index", "Clothes")'; // Ensure you use the correct action and controller names
+            }
+        });
+    </script>
+}

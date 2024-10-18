@@ -1,0 +1,216 @@
+﻿@model MasterPiece.ViewModels.UserInfoAndServicesViewModel
+
+@{
+    ViewBag.Title = "الصفحة الشخصية";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .edit-profile-btn {
+        transition: 0.3s !important;
+        border-radius: 0 !important;
+    }
+    .edit-profile-btn:hover {
+        color: white !important;
+        transform: scale(1) !important;
+    }
+</style>
+<link href="~/Content/profile.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<main class="main profilePage">
+    <section id="EachService" class="EachService section">
+        <div class="profileContainer">
+            <h3 class="Eachsection-title">معلومات المستخدم</h3>
+            <hr>
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h2>@Model.user.FirstName @Model.user.LastName</h2>
+                    <p>@Model.user.Email</p>
+                    <span>رقم الهاتف: @Model.user.Phone</span>
+                    <span>العنوان: @Model.user.Address</span>
+                </div>
+                <img class="profile-img" src="~/Content/img/testimonials/testimonials-2.jpg" alt="Profile Picture">
+            </div>
+
+            <div class="user-info">
+                <div class="info-row">
+                    <label>الاسم الأول:</label>
+                    <span>@Model.user.FirstName</span>
+                </div>
+                <div class="info-row">
+                    <label>الاسم الثاني:</label>
+                    <span>@Model.user.LastName</span>
+                </div>
+                <div class="info-row">
+                    <label>البريد الإلكتروني:</label>
+                    <span>@Model.user.Email</span>
+                </div>
+                <div class="info-row">
+                    <label>رقم الهاتف:</label>
+                    <span>@Model.user.Phone</span>
+                </div>
+                <div class="info-row">
+                    <label>العنوان:</label>
+                    <span>@Model.user.Address</span>
+                </div>
+            </div>
+
+            <h3 class="Eachsection-title regServ">الخدمات المسجلة</h3>
+            <hr>
+
+            <!-- Start of Service: Venue Booking -->
+            <ul class="service-list">
+                <li class="service-item"
+                    data-bs-toggle="collapse" data-bs-target="#venueBookingSection" role="button" aria-expanded="false" aria-controls="venueBookingSection">
+                    <strong>حجز الصالات</strong>
+                </li>
+                <div class="collapse" id="venueBookingSection">
+                    @if (Model.booking != null && Model.booking.Any(b => b.VenueId.HasValue))
+                    {
+                        foreach (var booking in Model.booking.Where(b => b.VenueId.HasValue))
+                        {
+                            <div class="booking-card d-flex justify-content-between align-items-start mb-3">
+                                <div style="margin-right:15px">
+                                    <p><strong>اسم الصالة:</strong> @booking.WeddingVenue.Name</p>
+                                    <p><strong>المبلغ المدفوع:</strong> @booking.WeddingVenue.Price د.أ</p>
+                                    <p><strong>تاريخ الحجز:</strong> @booking.BookingDate.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>من الوقت:</strong> @booking.BookingTimeFrom.ToString(@"hh\:mm")</p>
+                                    <p><strong>إلى الوقت:</strong> @booking.BookingTimeTo.ToString(@"hh\:mm")</p>
+                                    <p><strong>طلب خاص:</strong> @booking.SpecialOrder</p>
+                                </div>
+                                <img src="~/Content/img/@booking.WeddingVenue.ImageUrl" alt="صورة الصالة" class="img-thumbnail" style="width: 210px; height: 210px; object-fit: cover; margin-right: 15px;" />
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <p>لا يوجد حقول لعرضها</p>
+                    }
+                </div>
+
+
+                <li class="service-item"
+                    data-bs-toggle="collapse" data-bs-target="#farmBookingSection" role="button" aria-expanded="true" aria-controls="farmBookingSection">
+                    <strong>حجز المزارع</strong>
+                </li>
+                <div class="collapse" id="farmBookingSection">
+                    @if (Model.booking != null && Model.booking.Any(b => b.FarmId.HasValue))
+                    {
+                        foreach (var booking in Model.booking.Where(b => b.FarmId.HasValue))
+                        {
+                            <div class="booking-card d-flex justify-content-between align-items-start mb-3">
+                                <div style="margin-right:15px">
+                                    <p><strong>اسم المزرعة:</strong> @booking.Farm.Name</p>
+                                    <p><strong>المبلغ المدفوع:</strong> @booking.Farm.Price د.أ</p>
+                                    <p><strong>تاريخ الحجز:</strong> @booking.BookingDate.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>من الوقت:</strong> @booking.BookingTimeFrom.ToString(@"hh\:mm")</p>
+                                    <p><strong>إلى الوقت:</strong> @booking.BookingTimeTo.ToString(@"hh\:mm")</p>
+                                    <p><strong>طلب خاص:</strong> @booking.SpecialOrder</p>
+                                </div>
+                                <img src="~/Content/img/@booking.Farm.ImageUrl" alt="صورة المزرعة" class="img-thumbnail" style="width: 210px; height: 210px; object-fit: cover; margin-right: 15px;" />
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <p>لا يوجد حقول لعرضها</p>
+                    }
+                </div>
+
+
+                <li class="service-item"
+                    data-bs-toggle="collapse" data-bs-target="#clothBookingSection" role="button" aria-expanded="false" aria-controls="clothBookingSection">
+                    <strong>حجز الملابس</strong>
+                </li>
+                <div class="collapse" id="clothBookingSection">
+                    @if (Model.bookCloth != null && Model.bookCloth.Any())
+                    {
+                        foreach (var booking in Model.bookCloth)
+                        {
+                            <div class="booking-card d-flex justify-content-between align-items-start mb-3">
+                                <div style="margin-right:15px">
+                                    <p><strong>الاسم:</strong> @booking.Cloth.Name</p>
+                                    <p><strong>المبلغ المدفوع:</strong> 200 د.أ</p>
+                                    <p><strong>تاريخ الحجز من:</strong> @booking.BookingDateFrom.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>تاريخ الحجز إلى:</strong> @booking.BookingDateTo.ToString(@"hh\:mm")</p>
+                                    <p><strong>طلب خاص:</strong> @booking.SpecialOrder</p>
+                                </div>
+                                <img src="~/Content/img/@booking.Cloth.ImageUrl" alt="خدمة الملابس" class="img-thumbnail" style="width: 210px; height: 210px; object-fit: cover; margin-right: 15px;" />
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <p>لا يوجد حقول لعرضها</p>
+                    }
+                </div>
+
+
+                <li class="service-item"
+                    data-bs-toggle="collapse" data-bs-target="#photogBookingSection" role="button" aria-expanded="false" aria-controls="photogBookingSection">
+                    <strong>حجز جلسة تصوير</strong>
+                </li>
+                <div class="collapse" id="photogBookingSection">
+                    @if (Model.bookPhotographer != null && Model.bookPhotographer.Any())
+                    {
+                        foreach (var booking in Model.bookPhotographer)
+                        {
+                            <div class="booking-card d-flex justify-content-between align-items-start mb-3">
+                                <div style="margin-right:15px">
+                                    <p><strong>اسم المصور:</strong> @booking.Photographer.Name</p>
+                                    <p><strong>المبلغ المدفوع:</strong>@booking.Photographer.Price</p>
+                                    <p><strong>تاريخ الحجز:</strong> @booking.BookingDate.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>من الوقت:</strong> @booking.BookingTimeFrom.ToString(@"hh\:mm")</p>
+                                    <p><strong>إلى الوقت:</strong> @booking.BookingTimeTo.ToString(@"hh\:mm")</p>
+                                    <p><strong>طلب خاص:</strong> @booking.SpecialOrder</p>
+                                </div>
+                                <img src="~/Content/img/@booking.Photographer.ImageUrl" alt="خدمة التصوير" class="img-thumbnail" style="width: 210px; height: 210px; object-fit: cover; margin-right: 15px;" />
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <p>لا يوجد حقول لعرضها</p>
+                    }
+                </div>
+
+
+                <li class="service-item"
+                    data-bs-toggle="collapse" data-bs-target="#invitationCardSection" role="button" aria-expanded="false" aria-controls="invitationCardSection">
+                    <strong>كرت الدعوة</strong>
+                </li>
+                <div class="collapse" id="invitationCardSection">
+                    @if (Model.invitationCardForm != null && Model.invitationCardForm.Any())
+                    {
+                        foreach (var booking in Model.invitationCardForm)
+                        {
+                            <div class="booking-card d-flex justify-content-between align-items-start mb-3">
+                                <div style="margin-right:15px">
+                                    <p><strong>اسم البطاقة:</strong> @booking.InvitationCard.CardName</p>
+                                    <p><strong>التاريخ:</strong> @booking.WeddingDate</p>
+                                    <p><strong>اسم القاعة:</strong> @booking.Venue</p>
+                                    <p><strong>ملاحظات:</strong> @booking.AdditionalNotes.</p>
+                                </div>
+                                <img src="~/Content/img/@booking.InvitationCard.ImageUrl" alt="خدمة كرت الدعوة" class="img-thumbnail" style="width: 210px; height: 210px; object-fit: cover; margin-right: 15px;" />
+                            </div>
+                            <hr />
+                        }
+                    }
+                    else
+                    {
+                        <p>لا يوجد حقول لعرضها</p>
+                    }
+                </div>
+            </ul>
+
+
+            <!-- End of Service: Venue Booking -->
+
+            <a href="@Url.Action("EditProfile", "Users", new { id = Model.user.UserId })" class="edit-profile-btn">تعديل الملف الشخصي</a>
+        </div>
+    </section>
+</main>

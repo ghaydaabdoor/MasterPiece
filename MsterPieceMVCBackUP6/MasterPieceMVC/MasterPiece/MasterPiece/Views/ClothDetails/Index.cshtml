@@ -1,0 +1,364 @@
+﻿@model  MasterPiece.Models.ClothDetail
+
+@{
+    ViewBag.Title = "تفاصيل الملابس";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/ClothDetailsSheet1.css" rel="stylesheet" />
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">@Model.Name<br></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+            <!-- Gallery -->
+            <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <div class="gallery-image-wrapper dressPic">
+                        <a href="@Model.ImageUrl1">
+                            <img src="@Model.ImageUrl1" class="w-100 shadow-1-strong rounded mb-4" alt="Cloth" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <div class="gallery-image-wrapper dressPic">
+                        <a href="@Model.ImageUrl2">
+                            <img src="@Model.ImageUrl2" class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="Cloth" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="gallery-image-wrapper dressPic">
+                        <a href="@Model.ImageUrl3">
+                            <img src="@Model.ImageUrl3" class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="Cloth" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <div class="gallery-image-wrapper dressPic">
+                        <a href="@Model.ImageUrl4">
+                            <img src="@Model.ImageUrl4" class="w-100 shadow-1-strong rounded mb-4" alt="Cloth" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Gallery -->
+        <!-- ======= ServiceDetails Section ======= -->
+        <section id="ServiceDetails" class="ServiceDetails">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <i class="bi bi-bar-chart"></i>
+                            <h4><a href="#">الوصف</a></h4>
+                            <p>
+                                @Model.Description
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box">
+                            <i class="bi bi-binoculars"></i>
+                            <h4><a href="#">اللون</a></h4>
+                            <p>@Model.Color</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box">
+                            <i class="bi bi-brightness-high"></i>
+                            <h4><a href="#">الميزات</a></h4>
+                            <p>@Model.Features</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box">
+                            <i class="bi bi-brightness-high"></i>
+                            <h4><a href="#">القماش</a></h4>
+                            <p>@Model.ClothMaterial</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box">
+                            <i class="bi bi-brightness-high"></i>
+                            <h4><a href="#">السعر</a></h4>
+                            <p>@Model.PriceDetails</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div></div>
+                    <a class="btn-getstarted ServiceBookBtn" href="javascript:void(0);" onclick="checkBooking(@Model.ClothId)">احجز الآن</a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <p class="ServiceSubtitle">تقييمات وتجارب العملاء</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="swiper init-swiper">
+                    <script type="application/json" class="swiper-config">
+                        {
+                          "loop": true,
+                          "speed": 600,
+                          "autoplay": {
+                            "delay": 5000
+                          },
+                          "slidesPerView": "auto",
+                          "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                          },
+                          "breakpoints": {
+                            "320": {
+                              "slidesPerView": 1,
+                              "spaceBetween": 40
+                            },
+                            "1200": {
+                              "slidesPerView": 3,
+                              "spaceBetween": 10
+                            }
+                          }
+                        }
+                    </script>
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                <h3>Rama Ali</h3>
+                                <h4>المكان المثالي لأي مناسبة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        نظمت حفل زفاف ابنتي في قاعات حياة إربد وكانت التجربة لا تُنسى. القاعة كانت
+                                        مزينة بشكل رائع والخدمات كانت على أعلى مستوى. كل شيء كان مرتبًا ومنظمًا بفضل
+                                        فريق العمل الممتاز. شكرًا لكم لجعل هذا اليوم الخاص لا يُنسى
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                <h3>Nadine Ahmad</h3>
+                                <h4>حفلة زفاف لا تُنسى</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        كانت تجربتنا في قاعات حياة إربد مذهلة! الديكورات الفاخرة والخدمات
+                                        المتكاملة جعلت حفلة زفافنا مثالية. فريق العمل كان محترفًا جدًا وقدموا لنا كل
+                                        ما نحتاجه لجعل يومنا مميزًا. شكراً جزيلاً
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                <h3>Rama Ali</h3>
+                                <h4>المكان المثالي لأي مناسبة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        نظمت حفل زفاف ابنتي في قاعات حياة إربد وكانت التجربة لا تُنسى. القاعة كانت
+                                        مزينة بشكل رائع والخدمات كانت على أعلى مستوى. كل شيء كان مرتبًا ومنظمًا بفضل
+                                        فريق العمل الممتاز. شكرًا لكم لجعل هذا اليوم الخاص لا يُنسى
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                                <h3>Sara Khaled</h3>
+                                <h4>خدمة رائعة وأجواء فاخرة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        احتفلنا هنا وكانت تجربة رائعة. الأجواء الفاخرة والخدمات مميزة أضافت لمسة
+                                        خاصة للحفل. الجميع استمتع والضيوف كانوا سعداء جداً. نوصي بشدة بقاعات حياة
+                                        إربد لأي مناسبة
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                <h3>Nadine Ahmad</h3>
+                                <h4>حفلة زفاف لا تُنسى</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        كانت تجربتنا في قاعات حياة إربد مذهلة! الديكورات الفاخرة والخدمات
+                                        المتكاملة جعلت حفلة زفافنا مثالية. فريق العمل كان محترفًا جدًا وقدموا لنا كل
+                                        ما نحتاجه لجعل يومنا مميزًا. شكراً جزيلاً
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+
+        </section><!-- /Testimonials Section -->
+
+
+
+    </section>
+
+</main>
+
+@if (TempData["LoginRequired"] != null && (bool)TempData["LoginRequired"] == true)
+{
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    title: 'يجب تسجيل الدخول',
+                    text: 'يجب تسجيل الدخول لمتابعة عملية الحجز',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'تسجيل الدخول',
+                    cancelButtonText: 'إلغاء',
+                    reverseButtons: true, // This option swaps the positions of Confirm and Cancel buttons
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to the login page
+                        window.location.href = '@Url.Action("Login", "Users")'; // Change "Account" to your login controller
+                    } else {
+                        // Go back to the previous page if the user cancels
+                        window.history.back();
+                    }
+                });
+            });
+    </script>
+}
+
+<script>
+    function checkBooking(clothId) {
+    $.ajax({
+        url: '@Url.Action("CreateClothForm", "Bookings")',
+        type: 'GET',
+        data: { id: clothId },
+        success: function (response) {
+            if (response.loginRequired) {
+                // Trigger SweetAlert for login
+                Swal.fire({
+                    title: 'يجب تسجيل الدخول',
+                    text: 'يجب تسجيل الدخول لمتابعة عملية الحجز',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'تسجيل الدخول',
+                    cancelButtonText: 'إلغاء',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Get the relative URL (excluding the protocol and domain)
+                        var returnUrl = '@Url.Action("CreateClothFormView", "Bookings", new { id = "__id__" })'.replace('__id__', clothId);
+
+                        // Redirect to the login page with the relative returnUrl
+                        window.location.href = '@Url.Action("Login", "Users")' + '?returnUrl=' + encodeURIComponent(returnUrl);
+                    }
+                });
+            } else if (response.redirect) {
+                window.location.href = response.redirect; // Redirect to the cloth form
+            } else if (response.alert) {
+                Swal.fire({
+                    title: 'تنبيه',
+                    text: response.message,
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'حسناً'
+                });
+            } else {
+                Swal.fire({
+                    title: 'خطأ',
+                    text: 'حدث خطأ أثناء معالجة طلبك.',
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'حسناً'
+                });
+            }
+        },
+        error: function () {
+            Swal.fire({
+                title: 'خطأ',
+                text: 'حدث خطأ أثناء معالجة طلبك.',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'حسناً'
+            });
+        }
+    });
+}
+</script>

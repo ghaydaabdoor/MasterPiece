@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MasterPiece.Models.Food>
+
+@{
+    ViewBag.Title = "الطعام والشراب";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .cart {
+        transform: translateY(-45px);
+    }
+
+    .btn-getstarted {
+        padding: 5px 10px;
+        border-radius: 0px;
+        border: 2px solid var(--accent-color);
+        background: var(--accent-color);
+        text-align:center;
+        width:30%;
+        font-size:14px;
+        height:35px;
+    }
+    #det {
+        color: #34495E;
+        background-color: white;
+        border: 1px solid #34495E;
+    }
+</style>
+
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">خدمات الطعام والشراب<br></p>
+            <p class="Eachsection-description">استمتع بأشهى الأطباق الميني لحفلات الزفاف في مختلف المزارع المميزة في إربد. نقدم لكم تشكيلة متنوعة من الأطعمة التي تلبي جميع الأذواق والمناسبات الخاصة. اختر الآن من بين الخيارات المتاحة واجعل يومكم مميزًا بكل تفاصيله:</p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="~/Content/img/@item.ImageUrl" alt="" class="img-fluid">
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p>السعر: @item.Price د.أ للحبة</p>
+                            <div class="stars">
+                                <a class="btn-getstarted details-btn" id="det" href="@Url.Action("Index", "FoodDetails", new {id=item.FoodId})">التفاصيل</a>
+                                <a id="bookId" class="btn-getstarted details-btn cart" href="@Url.Action("Index", "FoodDetails", new {id=item.FoodId})">أضف إلى الطلب</a>
+                                <span>@item.Rate (20)</span>
+                                <div><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card Item -->
+                }
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <!-- /EachService Section -->
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookButtons = document.querySelectorAll("#bookId"); // Select all elements with id 'bookId'
+        bookButtons.forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'info',
+                    title: 'سوف تتم اتاحة هذه الخدمة قريبا',
+                    confirmButtonText: 'حسناً'
+                });
+            });
+        });
+    });
+</script>

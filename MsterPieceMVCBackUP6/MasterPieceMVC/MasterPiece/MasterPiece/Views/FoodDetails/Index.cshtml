@@ -1,0 +1,429 @@
+﻿@model  MasterPiece.Models.FoodViewModel
+
+@{
+    ViewBag.Title = "تفاصيل الطعام";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/FarmDetailsSheet1.css" rel="stylesheet" />
+<style>
+    /* Quantity Input Style */
+    .quantity-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-minus, .btn-plus {
+        width: 40px;
+        height: 40px;
+    }
+
+    .quantity-input {
+        width: 50px;
+        height: 40px;
+    }
+
+    /* Gallery Images Style */
+    .gallery-image-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .gallery-image-wrapper img {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transition: 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-image-wrapper:hover .overlay {
+        opacity: 1;
+    }
+
+    .fullscreen-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 24px;
+        display: none;
+    }
+
+    .gallery-image-wrapper:hover .fullscreen-icon {
+        display: block;
+    }
+</style>
+
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <!-- Section Title -->
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">@Model.food.Name<br></p>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="container">
+            <div class="row">
+                <!-- Gallery Images -->
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="gallery-image-wrapper">
+                        <a href="@Model.foodDetail.ImageUrl1">
+                            <img src="@Model.foodDetail.ImageUrl1" class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="Farm photo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="gallery-image-wrapper">
+                        <a href="@Model.foodDetail.ImageUrl2">
+                            <img src="@Model.foodDetail.ImageUrl2" class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="Wintry Mountain Landscape" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="gallery-image-wrapper">
+                        <a href="@Model.foodDetail.ImageUrl3">
+                            <img src="@Model.foodDetail.ImageUrl3" class="w-100 shadow-1-strong rounded mb-4"
+                                 alt="Mountains in the Clouds" />
+                            <div class="overlay"></div>
+                            <div class="fullscreen-icon">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= ServiceDetails Section ======= -->
+        <section id="ServiceDetails" class="ServiceDetails">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    <!-- Description Section -->
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <i class="bi bi-bar-chart"></i>
+                            <h4><a href="#">الوصف</a></h4>
+                            <p>@Model.food.Description</p>
+                        </div>
+                    </div>
+
+                    <!-- Price and Quantity Section -->
+                    <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box">
+                            <i class="bi bi-brightness-high"></i>
+                            <h4><a href="#">السعر</a></h4>
+                            <p>@Model.food.Price دينار/للحبة</p>
+
+                            <!-- Quantity Selector -->
+                            <div class="quantity-wrapper d-flex align-items-center mt-3">
+                                <button class="btn btn-outline-secondary btn-minus" type="button">-</button>
+                                <input type="number" class="form-control text-center quantity-input mx-2" value="1" min="1" style="width: 100px;">
+                                <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <div class="col-12 mt-4 text-center">
+                        <a id="bookId" class="btn-getstarted ServiceBookBtn" href="bookTable.html">أضف إلى السلة</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <p class="ServiceSubtitle">تقييمات وتجارب العملاء</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="swiper init-swiper">
+                    <script type="application/json" class="swiper-config">
+                        {
+                          "loop": true,
+                          "speed": 600,
+                          "autoplay": {
+                            "delay": 5000
+                          },
+                          "slidesPerView": "auto",
+                          "pagination": {
+                            "el": ".swiper-pagination",
+                            "type": "bullets",
+                            "clickable": true
+                          },
+                          "breakpoints": {
+                            "320": {
+                              "slidesPerView": 1,
+                              "spaceBetween": 40
+                            },
+                            "1200": {
+                              "slidesPerView": 3,
+                              "spaceBetween": 10
+                            }
+                          }
+                        }
+                    </script>
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                <h3>Rama Ali</h3>
+                                <h4>المكان المثالي لأي مناسبة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        نظمت حفل زفاف ابنتي في قاعات حياة إربد وكانت التجربة لا تُنسى. القاعة كانت
+                                        مزينة بشكل رائع والخدمات كانت على أعلى مستوى. كل شيء كان مرتبًا ومنظمًا بفضل
+                                        فريق العمل الممتاز. شكرًا لكم لجعل هذا اليوم الخاص لا يُنسى
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                <h3>Nadine Ahmad</h3>
+                                <h4>حفلة زفاف لا تُنسى</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        كانت تجربتنا في قاعات حياة إربد مذهلة! الديكورات الفاخرة والخدمات
+                                        المتكاملة جعلت حفلة زفافنا مثالية. فريق العمل كان محترفًا جدًا وقدموا لنا كل
+                                        ما نحتاجه لجعل يومنا مميزًا. شكراً جزيلاً
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                <h3>Rama Ali</h3>
+                                <h4>المكان المثالي لأي مناسبة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        نظمت حفل زفاف ابنتي في قاعات حياة إربد وكانت التجربة لا تُنسى. القاعة كانت
+                                        مزينة بشكل رائع والخدمات كانت على أعلى مستوى. كل شيء كان مرتبًا ومنظمًا بفضل
+                                        فريق العمل الممتاز. شكرًا لكم لجعل هذا اليوم الخاص لا يُنسى
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                                <h3>Sara Khaled</h3>
+                                <h4>خدمة رائعة وأجواء فاخرة</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        احتفلنا هنا وكانت تجربة رائعة. الأجواء الفاخرة والخدمات مميزة أضافت لمسة
+                                        خاصة للحفل. الجميع استمتع والضيوف كانوا سعداء جداً. نوصي بشدة بقاعات حياة
+                                        إربد لأي مناسبة
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="~/Content/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                <h3>Nadine Ahmad</h3>
+                                <h4>حفلة زفاف لا تُنسى</h4>
+                                <div class="stars">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    <span>
+                                        كانت تجربتنا في قاعات حياة إربد مذهلة! الديكورات الفاخرة والخدمات
+                                        المتكاملة جعلت حفلة زفافنا مثالية. فريق العمل كان محترفًا جدًا وقدموا لنا كل
+                                        ما نحتاجه لجعل يومنا مميزًا. شكراً جزيلاً
+                                    </span>
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+
+        </section><!-- /Testimonials Section -->
+        <!-- Services Section -->
+        <section id="services" class="services section">
+
+            <!-- Section Title -->
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <p class="ServiceSubtitle">خدمات تهمك</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="row gy-5">
+
+                    <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-item farmAddInfo">
+                            <div class="img">
+                                <img src="~/Content/img/services-1.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-cup-straw"></i>
+                                </div>
+                                <a href="food.html" class="stretched-link">
+                                    <h3>خدمات الطعام والشراب</h3>
+                                </a>
+                                <p>استمتع بأشهى المقبلات والحلويات الخفيفة لضيوفك في حفل الزفاف</p>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="700">
+                        <div class="service-item farmAddInfo">
+                            <div class="img">
+                                <img src="~/Content/img/services-6.jfif" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-postcard-heart"></i>
+                                </div>
+                                <a href="invitationCards.html" class="stretched-link">
+                                    <h3>تصميم كرت الدعوة</h3>
+                                </a>
+                                <p>اختر تصميم بطاقة الدعوة المثالية من مجموعتنا الواسعة.</p>
+                                <a href="invitationCards.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="service-item farmAddInfo">
+                            <div class="img">
+                                <img src="~/Content/img/services-5.jfif" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-camera"></i>
+                                </div>
+                                <a href="service-details.html" class="stretched-link">
+                                    <h3>خدمات التصوير</h3>
+                                </a>
+                                <p>وثّق لحظاتك السعيدة بأعلى جودة من خلال فريق تصوير محترف</p>
+                                <a href="photographers.html" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-item farmAddInfo">
+                            <div class="img">
+                                <img src="~/Content/img/services-2.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-person-standing-dress"></i>
+                                </div>
+                                <a href="clothes.html" class="stretched-link">
+                                    <h3>خدمات الملابس</h3>
+                                </a>
+                                <p>اختر من تشكيلة واسعة من الفساتين والبدلات لتتألق في يومك الخاص</p>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Services Section -->
+    </section>
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const minusButton = document.querySelector('.btn-minus');
+        const plusButton = document.querySelector('.btn-plus');
+        const quantityInput = document.querySelector('.quantity-input');
+
+        // Decrease quantity
+        minusButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        // Increase quantity
+        plusButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+    });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const bookButtons = document.querySelectorAll("#bookId"); // Select all elements with id 'bookId'
+        bookButtons.forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'info',
+                    title: 'سوف تتم اتاحة هذه الخدمة قريبا',
+                    confirmButtonText: 'حسناً'
+                });
+            });
+        });
+    });
+
+</script>
+

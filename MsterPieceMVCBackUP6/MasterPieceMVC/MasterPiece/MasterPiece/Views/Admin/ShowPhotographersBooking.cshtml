@@ -1,0 +1,233 @@
+﻿@model IEnumerable<MasterPiece.Models.BookingPhotographer>
+
+@{
+    ViewBag.Title = "عرض حجوزات التصوير";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Styling for Arabic right alignment */
+    th, td, textarea, h5, h4 {
+        text-align: right;
+    }
+
+    /* Align text and buttons from right */
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    /* Custom button alignments */
+    .swal2-actions {
+        direction: rtl; /* Align buttons from right to left */
+    }
+
+    .swal2-confirm {
+        margin-left: 5px; /* Spacing between buttons */
+    }
+
+    .swal2-cancel {
+        margin-right: 5px; /* Spacing between buttons */
+    }
+
+    .customWidth {
+        max-width: 180px;
+    }
+
+    /* Additional styling for consistent spacing and fonts */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    input[type="text"], input[type="email"], input[type="date"], input[type="time"], textarea {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض حجوزات التصوير</h2>
+            <!-- Trigger for Modal -->
+            <a class="btn btn-primary" href="javascript:void(0);" data-toggle="modal" data-target="#addBookingModal">إنشاء حجز جديد</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">اسم المصور</th>
+                        <th scope="col">تاريخ الحجز</th>
+                        <th scope="col">بداية الحجز</th>
+                        <th scope="col">نهاية الحجز</th>
+                        <th scope="col">اسم المستخدم</th>
+                        <th scope="col">البريد الإلكتروني</th>
+                        <th scope="col">رقم الهاتف</th>
+                        <th scope="col">الطلبات الخاصة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.BookingPhotogId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Photographer.Name)</td>
+                            <td>@item.BookingDate.ToString("yyyy-MM-dd")</td>
+                            <td>@Html.DisplayFor(modelItem => item.BookingTimeFrom)</td>
+                            <td>@Html.DisplayFor(modelItem => item.BookingTimeTo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.User.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                            <td>@Html.DisplayFor(modelItem => item.SpecialOrder)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Adding Booking -->
+<div class="modal fade" id="addBookingModal" tabindex="-1" role="dialog" aria-labelledby="addBookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBookingModalLabel">إنشاء حجز جديد</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm" action="/Admin/AddPhotographersBooking" method="post">
+                    <!-- Anti-Forgery Token -->
+                    @Html.AntiForgeryToken()
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="FullName" class="control-label">الاسم الكامل</label>
+                        <input type="text" id="FullName" name="FullName" class="form-control" placeholder="الاسم الكامل لصاحب الحجز" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- Photographer Dropdown in the Modal Form -->
+                    <div class="form-group">
+                        <label for="PhotographerId" class="control-label">اسم المصور</label>
+                        <select id="PhotographerId" name="PhotographerId" class="form-control">
+                            <option value="">اختر المصور</option>
+                            @if (ViewBag.Photographers != null)
+                            {
+                                foreach (var photographer in ViewBag.Photographers)
+                                {
+                                    <option value="@photographer.PhotographerId">@photographer.Name</option>
+                                }
+                            }
+                        </select>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="VenueId" data-valmsg-replace="true"></span>
+                    </div>
+
+
+
+                    <!-- Booking Date -->
+                    <div class="form-group">
+                        <label for="BookingDate" class="control-label">تاريخ الحجز</label>
+                        <input type="date" id="BookingDate" name="BookingDate" class="form-control" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="BookingDate" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- Booking Time (From) -->
+                    <div class="form-group">
+                        <label for="BookingTimeFrom" class="control-label">وقت الحجز</label>
+                        <input type="time" id="BookingTimeFrom" name="BookingTimeFrom" class="form-control" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="BookingTimeFrom" data-valmsg-replace="true"></span>
+                        <span id="errorMessage" class="text-danger"></span>
+                    </div>
+
+                    <!-- Booking Time (To) -->
+                    <div class="form-group">
+                        <label for="BookingTimeTo" class="control-label">وقت الانتهاء</label>
+                        <input type="time" id="BookingTimeTo" name="BookingTimeTo" class="form-control" readonly />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="BookingTimeTo" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-success">حفظ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var submitButton = document.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.classList.add("disabledClass");
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        var dd = String(tomorrow.getDate()).padStart(2, '0');
+        var mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        var yyyy = tomorrow.getFullYear();
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+
+        var dateInput = document.getElementById("BookingDate");
+        dateInput.setAttribute("min", formattedDate);
+
+        var timeFromInput = document.getElementById("BookingTimeFrom");
+        var timeToInput = document.getElementById("BookingTimeTo");
+        var errorMessage = document.getElementById("errorMessage");
+        var dateValid = false;
+        var timeValid = false;
+
+        dateInput.addEventListener("change", function () {
+            dateValid = dateInput.value !== "";
+            checkFormValidity();
+        });
+
+        timeFromInput.addEventListener("change", function () {
+            var selectedTime = this.value;
+            var hours = parseInt(selectedTime.split(":")[0]);
+
+            if (hours >= 15 && hours <= 23) {
+                timeValid = true;
+                errorMessage.style.display = "none";
+
+                var endTimeHours = hours + 2;
+                var minutes = selectedTime.split(":")[1];
+
+                if (endTimeHours > 23) {
+                    endTimeHours -= 24;
+                }
+
+                var formattedEndTime = String(endTimeHours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0');
+
+                timeToInput.value = formattedEndTime;
+                timeToInput.readOnly = true; // Set the field to readonly instead of disabled
+            } else {
+                timeValid = false;
+                errorMessage.style.display = "block";
+                errorMessage.textContent = "يرجى اختيار وقت بين الساعة 3 مساءً و 12 صباحاً";
+            }
+
+            checkFormValidity();
+        });
+
+        function checkFormValidity() {
+            if (dateValid && timeValid) {
+                submitButton.disabled = false;
+                submitButton.classList.remove("disabledClass");
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.add("disabledClass");
+            }
+        }
+    });
+</script>
+

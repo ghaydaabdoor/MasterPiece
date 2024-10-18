@@ -1,0 +1,149 @@
+﻿@model IEnumerable<MasterPiece.Models.Photographer>
+
+@{
+    ViewBag.Title = "التصوير";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+<style>
+    .EachService .card h3 {
+        text-transform: none;
+    }
+
+    .EachService .card .card-img img {
+        height: 270px;
+    }
+
+    .cart {
+        transform: translateY(-45px);
+    }
+
+    .btn-getstarted {
+        padding: 5px 10px;
+        border-radius: 0px;
+        border: 2px solid var(--accent-color);
+        background: var(--accent-color);
+        text-align: center;
+        width: 30%;
+        font-size: 14px;
+        height: 35px;
+    }
+
+    #det {
+        color: #34495E;
+        background-color: white;
+        border: 1px solid #34495E;
+    }
+</style>
+<main class="main">
+
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+
+        <div class="container" data-aos="fade-up">
+            <p class="Eachsection-title">خدمات التصوير<br></p>
+            <p class="Eachsection-description">استعرض أجمل صالات الأفراح في إربد واختار الأنسب لاحتفالك الخاص. نقدم لك مجموعة متنوعة من الصالات لتناسب جميع الأذواق والمناسبات. احجز الآن واجعل يومك مميزًا:</p>
+            <div class="alert alert-warning" role="alert" style="font-size: 14px; text-align: right; margin-top: 20px;">
+                تنبيه: خدمة التصوير متاحة فقط بعد إتمام حجز صالة أو مزرعة. نشكركم على تفهمكم، ونتطلع لتوثيق لحظاتكم المميزة
+            </div>
+        </div>
+
+        
+        <!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="~/Content/img/@item.ImageUrl" alt="" class="img-fluid">
+                            </div>
+                            <h3>@item.Name</h3>
+                            <p>السعر: @item.Price دينار </p>
+                            <div class="stars">
+                                <a class="btn-getstarted details-btn" id="det" href="@Url.Action("Index", "PhotographerDetails", new {id=item.PhotographerId})">التفاصيل</a>
+                                <a class="btn-getstarted details-btn cart" href="javascript:void(0);" onclick="checkBooking(@item.PhotographerId)">احجز الآن</a>
+                                <span>@item.Rate (20)</span>
+                                <div><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card Item -->
+                }
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <!-- /EachService Section -->
+
+</main>
+
+<script>
+    function checkBooking(photogId) {
+    $.ajax({
+        url: '@Url.Action("CreatePhotogForm", "Bookings")',
+        type: 'GET',
+        data: { id: photogId },
+        success: function (response) {
+            if (response.loginRequired) {
+                // Trigger SweetAlert for login
+                Swal.fire({
+                    title: 'يجب تسجيل الدخول',
+                    text: 'يجب تسجيل الدخول لمتابعة عملية الحجز',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'تسجيل الدخول',
+                    cancelButtonText: 'إلغاء',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Get the relative URL (excluding the protocol and domain)
+                        var returnUrl = '@Url.Action("CreatePhotogFormView", "Bookings", new { id = "__id__" })'.replace('__id__', photogId);
+
+                        // Redirect to the login page with the relative returnUrl
+                        window.location.href = '@Url.Action("Login", "Users")' + '?returnUrl=' + encodeURIComponent(returnUrl);
+                    }
+                });
+            } else if (response.redirect) {
+                window.location.href = response.redirect; // Redirect to the photographer form
+            } else if (response.alert) {
+                Swal.fire({
+                    title: 'تنبيه',
+                    text: response.message,
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'حسناً'
+                });
+            } else {
+                Swal.fire({
+                    title: 'خطأ',
+                    text: 'حدث خطأ أثناء معالجة طلبك.',
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'حسناً'
+                });
+            }
+        },
+        error: function () {
+            Swal.fire({
+                title: 'خطأ',
+                text: 'حدث خطأ أثناء معالجة طلبك.',
+                icon: 'error',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'حسناً'
+            });
+        }
+    });
+}
+</script>
+

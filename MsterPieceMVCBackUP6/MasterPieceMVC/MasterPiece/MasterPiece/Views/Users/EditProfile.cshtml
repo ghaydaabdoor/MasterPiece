@@ -1,0 +1,89 @@
+﻿@model MasterPiece.Models.User
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .btn-getstarted{
+        width: 50% !important;
+    }
+    input{
+        border-radius: 0 !important;
+    }
+</style>
+<link href="~/Content/EditProfile.css" rel="stylesheet" />
+<main class="main profilePage">
+    <!-- EachService Section -->
+    <section id="EachService" class="EachService section">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-9 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 id="sett" class="text-right Eachsection-title">إعدادات الملف الشخصي</h4>
+                        </div>
+
+                        <!-- Start of the form to edit the profile -->
+                        @using (Html.BeginForm("EditProfile", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.UserId)
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label class="labels">الاسم الثاني</label>
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "الاسم الثاني" })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">الاسم الأول</label>
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "الاسم الأول" })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <label class="labels">البريد الإلكتروني</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "أدخل البريد الإلكتروني", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">رقم الهاتف</label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", placeholder = "أدخل رقم الهاتف" })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="labels">العنوان</label>
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "أدخل العنوان" })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="mt-5 d-flex justify-content-between align-items-center">
+                                <!-- Change Password Button as a link styled like a button -->
+                                <a style="text-align:center" href="@Url.Action("ChangePassword", "Users", new { id = Model.UserId })" class="btn-getstarted">تغيير كلمة السر</a>
+
+                                <!-- Save Profile Button -->
+                                <button class="btn-getstarted" type="submit">حفظ الملف الشخصي</button>
+                            </div>
+
+
+
+                        }
+                        <!-- End of form -->
+                    </div>
+                </div>
+
+                <!-- Profile Picture Section -->
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px" src="~/Content/img/testimonials/testimonials-2.jpg" alt="Profile Picture">
+                        <span class="font-weight-bold">@Model.FirstName @Model.LastName</span>
+                        <span class="text-black-50">@Model.Email</span>
+                        <span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

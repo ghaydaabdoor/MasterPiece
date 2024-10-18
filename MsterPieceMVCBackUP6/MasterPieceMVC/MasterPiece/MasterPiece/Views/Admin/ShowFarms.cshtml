@@ -1,0 +1,299 @@
+﻿@model IEnumerable<MasterPiece.Models.FarmViewModel>
+
+
+@{
+    ViewBag.Title = "ShowFarms";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    th, td, textarea {
+        text-align: right;
+    }
+
+    h5, h4 {
+        width: 100%;
+        text-align: right;
+    }
+
+    .small-image {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 650px;
+        overflow-y: scroll;
+    }
+
+    .swal2-actions {
+        direction: rtl; 
+    }
+
+    .swal2-confirm {
+        margin-left: 5px; 
+    }
+
+    .swal2-cancel {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-end">عرض جميع المزارع</h2>
+            <a class="btn btn-primary" href="@Url.Action("CreateFarm","Admin")">إضافة مزرعة</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0" dir="rtl">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">الرقم</th>
+                        <th scope="col">الصورة</th>
+                        <th scope="col">اسم المزرعة</th>
+                        <th scope="col">الموقع</th>
+                        <th scope="col">السعر (دينار)</th>
+                        <th scope="col">التقييم</th>
+                        <th scope="col">الخصم %</th>
+                        <th scope="col">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.farm.FarmId</td>
+                            <td><img src="~/Content/img/@item.farm.ImageUrl" alt="@item.farm.Name" class="img-thumbnail" style="width:100px;"></td>
+                            <td>@item.farm.Name</td>
+                            <td>@item.farm.Location</td>
+                            <td>@item.farm.Price</td>
+                            <td>@item.farm.Rate</td>
+                            <td>@item.farm.Discount</td>
+                            <td>
+                                <!-- Action Buttons -->
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Index", "FarmDetails", new { id = @item.farm.FarmId })">عرض</a>
+                                <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#editModal-@item.farm.FarmId">تعديل</a>
+                                <form id="deleteForm-@item.farm.FarmId" action="@Url.Action("DeleteFarm", "Admin", new { id = @item.farm.FarmId })" method="post" style="display:inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.farm.FarmId)">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- Modal for Edit -->
+                        <!-- Modal for Edit -->
+                        <div class="modal fade" id="editModal-@item.farm.FarmId" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-@item.farm.FarmId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <!-- Added 'modal-lg' for larger modal -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">تعديل المزرعة</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form for editing farm -->
+                                        @using (Html.BeginForm("EditFarm", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" id="farm.FarmId" name="farm.FarmId" value="@item.farm.FarmId" />
+                                            <input type="hidden" id="farmDetail.FarmDetailId" name="farmDetail.FarmDetailId" value="@item.farmDetail.FarmDetailId" />
+
+
+                                            <div class="container-fluid">
+                                                <!-- Farm Details Section -->
+                                                <h4 class="mb-3">تفاصيل المزرعة</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Location -->
+                                                        <div class="form-group">
+                                                            <label for="FarmLocation" class="control-label">الموقع</label>
+                                                            <input type="text" id="FarmLocation" name="farm.Location" class="form-control" placeholder="الموقع" value="@item.farm.Location">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Farm Name -->
+                                                        <div class="form-group">
+                                                            <label for="FarmName" class="control-label">اسم المزرعة</label>
+                                                            <input type="text" id="FarmName" name="farm.Name" class="form-control" placeholder="اسم المزرعة" value="@item.farm.Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Rate -->
+                                                        <div class="form-group">
+                                                            <label for="FarmRate" class="control-label">التقييم</label>
+                                                            <input type="number" id="FarmRate" name="farm.Rate" class="form-control" placeholder="التقييم" min="1" max="5" value="@item.farm.Rate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Price -->
+                                                        <div class="form-group">
+                                                            <label for="FarmPrice" class="control-label">السعر</label>
+                                                            <input type="number" id="FarmPrice" name="farm.Price" class="form-control" placeholder="السعر" step="0.01" value="@item.farm.Price">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Rate -->
+                                                        <div class="form-group">
+                                                            <label for="FarmImageUrl" class="control-label">الصورة الرئيسية</label>
+                                                            <input type="text" id="FarmImageUrl" name="farm.ImageUrl" class="form-control" placeholder="الصورة الرئيسية" value="@item.farm.ImageUrl">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Discount -->
+                                                        <div class="form-group">
+                                                            <label for="FarmDiscount" class="control-label">الخصم</label>
+                                                            <input type="number" id="FarmDiscount" name="farm.Discount" class="form-control" placeholder="الخصم" value="@item.farm.Discount">
+                                                        </div>
+                                                    </div>
+                                                </div>                                               
+
+                                                <!-- Farm Additional Details -->
+                                                @if (item.farmDetail != null)
+                                                {
+                                                    <hr />
+                                                    <h4 class="mb-3">تفاصيل إضافية</h4>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label">الصور</label>
+                                                        <div class="row">
+                                                            <!-- Editable URLs for images -->
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl1" class="img-thumbnail small-image" data-image="1" onclick="showLargeImage('@item.farmDetail.ImageUrl1')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl1" data-image="1" name="farmDetail.ImageUrl1" oninput="updateImage(1, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl2" class="img-thumbnail small-image" data-image="2" onclick="showLargeImage('@item.farmDetail.ImageUrl2')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl2" data-image="2" name="farmDetail.ImageUrl2" oninput="updateImage(2, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl3" class="img-thumbnail small-image" data-image="3" onclick="showLargeImage('@item.farmDetail.ImageUrl3')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl3" data-image="3" name="farmDetail.ImageUrl3" oninput="updateImage(3, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl4" class="img-thumbnail small-image" data-image="4" onclick="showLargeImage('@item.farmDetail.ImageUrl4')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl4" data-image="4" name="farmDetail.ImageUrl4" oninput="updateImage(4, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl5" class="img-thumbnail small-image" data-image="5" onclick="showLargeImage('@item.farmDetail.ImageUrl5')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl5" data-image="5" name="farmDetail.ImageUrl5" oninput="updateImage(5, this)" />
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <img src="@item.farmDetail.ImageUrl6" class="img-thumbnail small-image" data-image="6" onclick="showLargeImage('@item.farmDetail.ImageUrl6')" />
+                                                                <input type="text" class="form-control" value="@item.farmDetail.ImageUrl6" data-image="6" name="farmDetail.ImageUrl6" oninput="updateImage(6, this)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Description -->
+                                                    <div class="form-group">
+                                                        <label for="FarmDescription" class="control-label">الوصف</label>
+                                                        <textarea id="FarmDescription" name="farmDetail.Description" class="form-control" rows="4" placeholder="الوصف">@item.farmDetail.Description</textarea>
+                                                    </div>
+
+                                                    <!-- Price -->
+                                                    <div class="form-group">
+                                                        <label for="FarmPrice" class="control-label">وصف السعر</label>
+                                                        <textarea id="FarmPrice" name="farmDetail.PriceDetails" class="form-control" rows="2" placeholder="وصف السعر">@item.farmDetail.PriceDetails</textarea>
+                                                    </div>
+
+                                                    <!-- Capacity Notes -->
+                                                    <div class="form-group">
+                                                        <label for="FarmCapacity" class="control-label">سعة القاعة</label>
+                                                        <textarea id="FarmCapacity" name="farmDetail.Capacity" class="form-control" rows="2" placeholder="سعة المزرعة">@item.farmDetail.Capacity</textarea>
+                                                    </div>
+
+                                                    <!-- Map Location -->
+                                                    <div class="form-group">
+                                                        <label for="FarmLocation" class="control-label">الخريطة</label>
+                                                        <input type="text" id="FarmLocation" name="farmDetail.Location" class="form-control" placeholder="رابط الخريطة" value="@item.farmDetail.Location">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <p>لا توجد تفاصيل مضافة لهذه المزرعة</p>
+                                                }
+
+                                                <!-- Submit Button -->
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-success btn-lg">حفظ التغييرات</button>
+                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">إلغاء</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal to Display Large Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="largeImage" src="" alt="Large Image" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function confirmDelete(farmId) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'إلغاء',
+            confirmButtonText: 'تأكيد',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if confirmed
+                document.getElementById('deleteForm-' + farmId).submit();
+            }
+        });
+    }
+
+    function showLargeImage(imageUrl) {
+        // Set the source of the large image in the modal
+        document.getElementById("largeImage").src = imageUrl;
+
+        // Show the modal
+        $('#imageModal').modal('show');
+    }
+
+    function updateImage(imageIndex, inputElement) {
+        // Get the corresponding image element using the data attribute
+        var imageElement = document.querySelector(`img[data-image="${imageIndex}"]`);
+        // Update the image src with the new URL
+        if (imageElement) {
+            imageElement.src = inputElement.value; // Update the image source
+        } else {
+            console.error(`Image with data-image="${imageIndex}" not found.`);
+        }
+    }
+
+</script>
